@@ -1,0 +1,21 @@
+
+@import '../bower_components/picnic/src/themes/default/theme';
+@import '../bower_components/picnic/src/vendor/compass-breakpoint/stylesheets/breakpoint';
+
+// Normalize.css (external library)
+@import '../bower_components/picnic/src/plugins/normalize/plugin';
+
+// Generic styles for things like <body>, <a> and others
+// It also overwrites normalize.css a bit
+@import '../bower_components/picnic/src/plugins/generic/plugin';
+@import '../bower_components/picnic/src/plugins/fontello/plugin';
+
+// Simple elements
+@import '../bower_components/picnic/src/plugins/label/plugin';
+@import '../bower_components/picnic/src/plugins/button/plugin';
+
+// Forms
+@import '../bower_components/picnic/src/plugins/input/plugin';
+@import '../bower_components/picnic/src/plugins/select/plugin';
+@import '../bower_components/picnic/src/plugins/radio/plugin';
+@import '../bower_components/picnic/src/plugins/checkbox/plugin';

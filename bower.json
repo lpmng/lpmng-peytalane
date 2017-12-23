@@ -1,0 +1,20 @@
+{
+  "name": "lpmng-peytalane",
+  "homepage": "https://github.com/lpmng/lpmng-peytalane",
+  "authors": [
+    "Tom Darboux"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "picnic": "^6.4.0"
+  }
+}
