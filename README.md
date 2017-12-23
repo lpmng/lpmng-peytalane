@@ -19,4 +19,4 @@ Launch server
 
 Compile sass
 ------------
-```$ sass scss/main.scss peytalaneApp/static/style.css --style compressed```
+```$ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed```
