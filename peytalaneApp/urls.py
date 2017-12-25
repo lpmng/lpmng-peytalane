@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from . import views
+from peytalaneApp.views.index import index
+from peytalaneApp.views.inscription import inscription
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^inscription/$', views.inscription, name='inscription'),
+    url(r'^$', index, name='index'),
+    url(r'^inscription/$', inscription, name='inscription'),
 ]
