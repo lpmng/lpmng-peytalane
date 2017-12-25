@@ -1,6 +1,5 @@
-.top-container
+.top-index
 {
-    padding: 80px 0 10px 0;
     min-height: 500px;
     width: 100%;
     background-image: url("/static/peytalaneApp/img/lune.jpg");
@@ -11,9 +10,14 @@
     font-weight: 800;
 }
 
-.top-container .date
+.top-index .date
 {
     font-size: 1.3em;
+}
+
+.top-container
+{
+    padding: 80px 0 10px 0;
 }
 
 .logo-nav
@@ -25,8 +29,8 @@
 }
 .container
 {
-    margin: 0 auto;
-    width: 90%;
+    margin: auto !important;
+    width: 90% !important;
 }
 
 .center
@@ -39,10 +43,48 @@
     font-size:1.5em;
 }
 
+
 .logo
 {
     width: 200px;
     display: block;
     margin: auto;
 }
+
+.flex > .middle
+{
+    align-self: center;
+}
+
+.flex > form
+{
+    width: 40%;
+}
+
+@media screen and (max-width: 800px)
+{
+    .flex-800
+    {
+        display: block !important;
+    }
+
+    .flex-800 > *
+    {
+        width: auto !important;
+    }
+}
+
+@media screen and (max-width: 450px)
+{
+    .flex-450
+    {
+        display: block !important;
+    }
+
+    .flex-450 > *
+    {
+        width: auto !important;
+    }
+}
+
 

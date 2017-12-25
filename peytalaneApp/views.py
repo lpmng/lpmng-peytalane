@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request,'peytalaneApp/index.html',locals())
+
+def inscription(request):
+    return render(request,'peytalaneApp/inscription.html',locals())
