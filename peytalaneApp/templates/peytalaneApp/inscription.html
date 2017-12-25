@@ -1,20 +1,27 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
 <!-- middle page with infos-->
+{% if form.subject.errors %}
+<ol>
+    {% for error in form.subject.errors %}
+    <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}Z
+</ol>
+{% endif %}
 <div class="top-container container flex flex-800">
     <form>
         <h2 class="center">Inscription exterieur</h2>
         <fieldset class="flex two flex-450">
-            <label>Nom:<input type="text" placeholder="Nom"></label>
-            <label>Prenom:<input type="text" placeholder="Prenom"></label>
+            <label>Nom:{{ form.lastName }}</label>
+            <label>Prenom:{{ form.firstName }}</label>
         </fieldset>
         <fieldset class="flex two flex-450">
-            <label>Mail:<input type="mail" placeholder="Mail"></label>
-            <label>Pseudo:<input type="text" placeholder="Pseudo"></label>
+            <label>Mail:{{ form.mail }}</label>
+            <label>Pseudo:{{ form.username }}</label>
         </fieldset>
         <fieldset class="flex two flex-450">
-            <label>Mot de passe:<input type="password" placeholder="Mot de passe"></label>
-            <label>Confirmation mot de passe:<input type="password" placeholder="Confirmation mot de passe"></label>
+            <label>Mot de passe:{{ form.password }}</label>
+            <label>Confirmation mot de passe:{{ form.passwordConfirm }}</label>
         </fieldset>
         <div class="center">
             <input type="submit" value="S'inscrire" class="center"/>
@@ -26,8 +33,8 @@
     <form>
         <h2 class="center">Inscription EISTI</h2>
         <fieldset class="flex one">
-        <label>Nom d'utilisateur AREL:<input type="text" placeholder="Utilisateur"></label>
-        <label>Mot de passe:<input type="password" placeholder="Mot de passe"></label>
+        <label>Nom d'utilisateur AREL:{{ form.username }}</label>
+        <label>Mot de passe:{{ form.passwordConfirm }}</label>
     </fieldset>
         <div class="center">
         <input type="submit" value="Connection LDAP" class="center"/>
