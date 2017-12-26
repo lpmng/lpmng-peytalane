@@ -1,0 +1,27 @@
+{% extends 'peytalaneApp/layout.html' %}
+{% block content %}
+<div class="top-container container flex flex-800">
+    <form class="white-container">
+        <h2 class="center">Connection</h2>
+        <fieldset class="flex one">
+            <label>Pseudo:{{ form.username }}</label>
+        </fieldset>
+        <fieldset class="flex one">
+            <label>Mot de passe:{{ form.password }}</label>
+        </fieldset>
+        <div class="center">
+            <input type="submit" value="Se connecter" class="center"/>
+        </div>
+    </form>
+</div>
+<style>
+    main
+    {
+        background-image: url("/static/peytalaneApp/img/lan3-flou.jpg");
+        background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+</style>
+{% endblock %}
