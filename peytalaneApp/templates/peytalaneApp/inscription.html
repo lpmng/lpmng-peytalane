@@ -9,8 +9,8 @@
 </ol>
 {% endif %}
 <div class="top-container container flex flex-800">
-    <form>
-        <h2 class="center">Inscription exterieur</h2>
+    <form class="white-container">
+        <h2 class="center">Inscription non EISTI</h2>
         <fieldset class="flex two flex-450">
             <label>Nom:{{ form.lastName }}</label>
             <label>Prenom:{{ form.firstName }}</label>
@@ -27,18 +27,39 @@
             <input type="submit" value="S'inscrire" class="center"/>
         </div>
     </form>
-    <div class="middle center">
+    <div class="middle center ou">
         Ou
     </div>
-    <form>
+    <form class="white-container">
         <h2 class="center">Inscription EISTI</h2>
         <fieldset class="flex one">
-        <label>Nom d'utilisateur AREL:{{ form.username }}</label>
-        <label>Mot de passe:{{ form.passwordConfirm }}</label>
-    </fieldset>
+            <label>Nom d'utilisateur AREL:{{ form.username }}</label>
+        </fieldset>
+        <fieldset class="flex one">
+            <label>Mot de passe:{{ form.passwordConfirm }}</label>
+        </fieldset>
+        
         <div class="center">
-        <input type="submit" value="Connection LDAP" class="center"/>
+            <input type="submit" value="Connection LDAP" class="center"/>
         </div>
     </form>
 </div>
+
+<style>
+    main
+    {
+        background-image: url("/static/peytalaneApp/img/lan3-flou.jpg");
+        background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+    .ou
+    {
+        text-shadow: 1px 1px 1px black, -1px -1px black, 1px 0px black, 0px 1px black;
+        color:white;
+        font-weight: 800;
+        font-size: 1.2em;
+    }
+</style>
 {% endblock %}

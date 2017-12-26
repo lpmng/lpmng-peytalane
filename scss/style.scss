@@ -1,3 +1,15 @@
+.flex > *
+{
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+}
+
+.flex
+{
+    
+}
+
+
 .top-index
 {
     min-height: 500px;
@@ -59,6 +71,19 @@
 .flex > form
 {
     width: 40%;
+}
+
+.white-container
+{
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0.2em rgba(17,17,17,0.2);
+    padding: 10px 3% 20px 3%;
+}
+
+label
+{
+    margin: auto;
+    max-width: 300px;
 }
 
 @media screen and (max-width: 800px)
