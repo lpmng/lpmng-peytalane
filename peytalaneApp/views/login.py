@@ -1,9 +1,9 @@
 from django.views import View
 from django.shortcuts import render, redirect
 from peytalaneApp.forms import LoginForm
+from django.http import HttpResponse
 
 class login(View):
-    # page d'acceuil, de connexion, d'inscription
     html = 'peytalaneApp/login.html'
 
     """
@@ -12,3 +12,7 @@ class login(View):
     def get(self, request, *args, **kwargs):
         form = LoginForm()
         return render(request, self.html, locals())
+
+    def post(self,request,*args):
+        return HttpResponse('Unauthorized', status=401)
+

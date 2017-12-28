@@ -30,13 +30,14 @@
     <div class="middle center ou">
         Ou
     </div>
-    <form class="white-container">
+    <form method="POST" action="/inscription/" class="white-container">
+        {% csrf_token %}
         <h2 class="center">Inscription EISTI</h2>
         <fieldset class="flex one">
-            <label>Nom d'utilisateur AREL:{{ form.username }}</label>
+            <label>Nom d'utilisateur AREL:{{ formEisti.username }}</label>
         </fieldset>
         <fieldset class="flex one">
-            <label>Mot de passe:{{ form.passwordConfirm }}</label>
+            <label>Mot de passe:{{ formEisti.password }}</label>
         </fieldset>
         
         <div class="center">
