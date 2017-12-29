@@ -1,7 +1,8 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
 <div class="top-container container flex flex-800">
-    <form class="white-container">
+    <form method="POST" action="/login/" class="white-container">
+        {% csrf_token %}
         <h2 class="center">Connection</h2>
         <fieldset class="flex one">
             <label>Pseudo:{{ form.username }}</label>

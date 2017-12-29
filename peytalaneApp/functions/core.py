@@ -19,3 +19,13 @@ class CoreRequest():
             return True
         else:
             return False
+    
+    def logUser(self,username,password):
+        try:
+            req = requests.get(self.urlCore+"/users/"+username+"/",data={})
+            if req.status_code == 200:
+                return req.json()
+            else:
+                return {}
+        except:
+            return {}

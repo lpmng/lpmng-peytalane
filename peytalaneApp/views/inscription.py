@@ -17,7 +17,7 @@ class inscription(View):
         form = InscriptionExtForm(request.POST)
         formEisti = InscriptionEistiForm(request.POST)
 
-        if form.is_valid():
+        if form.is_valid(): #form exterieurs
             return HttpResponse('Unauthorized', status=401)
         elif formEisti.is_valid(): # form eistiens
             arel = Arel()
