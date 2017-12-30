@@ -1,0 +1,40 @@
+#reservation
+{
+    min-height: 100vh;
+   
+
+}
+
+#reservation-header
+{
+    margin-top: 80px;
+}
+
+#reservation-header ul
+{
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    font-size: 1.2em;
+    
+}
+
+#reservation-content
+{
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: calc(100% - 0.6em - 400px);
+}
+
+#reservation-content > section
+{
+    
+}
+
+#reservation-resume
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 400px;
+    margin-top: 50px;
+}

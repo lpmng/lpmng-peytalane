@@ -1,8 +1,13 @@
+li
+{
+    margin: 0.3em 0 0.3em 0;
+}
 .flex > *
 {
     padding-right: 0.3em;
     padding-left: 0.3em;
 }
+
 
 .flex
 {
@@ -41,7 +46,8 @@
 }
 .container
 {
-    margin: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     width: 90% !important;
 }
 
@@ -77,13 +83,42 @@
 {
     background-color: rgba(255,255,255,0.95);
     box-shadow: 0 0 0.2em rgba(17,17,17,0.2);
-    padding: 10px 3% 20px 3%;
+    padding: 10px 3% 10px 3%;
 }
 
 label
 {
     margin: auto;
     max-width: 300px;
+}
+
+.square-320
+{
+    width: 320px;
+    height: 320px;
+    margin: auto;
+    flex-grow: 0;
+    margin-top: 20px;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    background-image:linear-gradient(60deg, #98b5ff, #a4fef5);
+    
+}
+
+.square-320 .icone
+{
+    width: 250px;    
+}
+
+.square-320 .title
+{
+    width: 100%;
+    padding-top: 13px;
+    border-top: 1px solid gray;
+    font-weight: 800;
+    height: 51px;
+    background-color: white;
 }
 
 @media screen and (max-width: 800px)
@@ -111,5 +146,3 @@ label
         width: auto !important;
     }
 }
-
-
