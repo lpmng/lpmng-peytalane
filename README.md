@@ -4,19 +4,41 @@ Peytalane
 Installation
 ------------
 
-```$ pip install -r requirements.txt```
+```powershell
+    $ pip install -r requirements.txt
+```
+
+```bash
+    $ python manage.py makemigrations peytalaneApp
+```
+
+```sh
+    $ python manage.py migrate peytalaneApp
+```
 
 if you want to edit stylesheet:
 
-```$ bower install```
+```zsh
+    $ bower install
+```
 
-```$ gem install sass```
+```csh
+    $ gem install sass
+```
+
+`Peytalane is dependant of lpmng-core`
+
+you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
 
 Launch server
 -------------
 
-```$ python manage.py runserver```
+```batch
+    $ python manage.py runserver
+```
 
 Compile sass
 ------------
-```$ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed```
+```
+    $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed4
+```

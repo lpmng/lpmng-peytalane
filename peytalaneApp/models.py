@@ -1,3 +1,4 @@
-from django.db import models
+from peytalaneApp.models_dir.food import *
+from peytalaneApp.models_dir.tournament import *
+from peytalaneApp.models_dir.user import *
 
-# Create your models here.
