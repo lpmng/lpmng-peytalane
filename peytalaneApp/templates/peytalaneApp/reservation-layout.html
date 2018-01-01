@@ -18,6 +18,15 @@
         <aside id="reservation-resume" class="white-container">
             <div>
             <h2>Transaction en cours:</h2>
+            <ul id="reservation-list">
+                {% for transaction in transactions_list %}
+                    <li>
+                        <div class="product">{{ transaction.product }}</div>
+                        <div class="price">{{ transaction.price }} € </div>
+                    </li>
+                {% endfor %}
+            </ul>
+                
             </div>
             <div class="center">
             <a href="#" class="button mainButton">Payer</a>

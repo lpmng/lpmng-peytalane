@@ -38,3 +38,26 @@
     width: 400px;
     margin-top: 50px;
 }
+
+#reservation-list
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#reservation-list li
+{
+    border: 1px solid lightgray;
+    padding: 10px 10px;
+}
+
+#reservation-list .product
+{
+    display: inline-block;
+}
+
+#reservation-list .price
+{
+    float: right;
+}

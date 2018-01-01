@@ -6,7 +6,7 @@ from peytalaneApp.functions.arel import Arel
 from peytalaneApp.functions.core import CoreRequest
 
 
-class inscription(View):
+class Inscription(View):
     def get(self, request, *args):
         form = InscriptionExtForm()
         formEisti =  InscriptionEistiForm()

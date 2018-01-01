@@ -4,7 +4,7 @@ from peytalaneApp.forms import LoginForm
 from django.http import HttpResponse
 from peytalaneApp.functions.core import CoreRequest
 
-class login(View):
+class Login(View):
     html = 'peytalaneApp/login.html'
 
     """
