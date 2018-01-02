@@ -26,7 +26,7 @@ if you want to edit stylesheet:
     $ gem install sass
 ```
 
-`Peytalane is dependant of lpmng-core`
+<span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
 
 you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
 
