@@ -8,6 +8,6 @@ urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^inscription/$', Inscription.as_view(), name='inscription'),
     url(r'^login/$', Login.as_view(), name='login'),
-    url(r'^reservation/$', Reservation.as_view(), name='reseration'),
+    url(r'^reservation/$', Reservation.as_view(), name='reservation'),
 
 ]
