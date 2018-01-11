@@ -2,11 +2,11 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from peytalaneApp.functions.transaction import Transaction
-from peytalaneApp.models_dir.food import *
+from peytalaneApp.models_dir.tournament import *
 
 #pages après le login
-class Reservation(View):
-    html = 'peytalaneApp/reservation-index.html'
+class Reservation_tournament(View):
+    html = 'peytalaneApp/reservation-tournament.html'
 
     """
         Renvoie la page d'Inscription au chargement de la page
@@ -16,6 +16,12 @@ class Reservation(View):
         t2 = Transaction(4,"Payement lan non cotisant",None)
         transactions_list = [t,t2]
 
+        tournaments_list = Tournament.objects.all()
 
-        print(t.price)
+        if 'id_tournament' in request.GET:
+            self.add_tournament(0)
+
         return render(request, self.html, locals())
+
+    def add_tournament(id):
+        print('plop')

@@ -1,0 +1,18 @@
+{% extends 'peytalaneApp/reservation-layout.html' %}
+{% block reservation-content %}
+<h2>Choisir un tournoi:</h2>
+<div class="flex">
+    {% for t in tournaments_list %}
+    <a href="/reservation/tournament?id_tournament={{t.id}}" class="white-container flat square-320 center">
+        <div class="icone" style="background-image:url('/{{t.img.url}}')">
+        </div>
+        <div class="title">{{t.name}}</div>
+    </a>
+    {%endfor%}
+<a href="/reservation/tournament/" class="white-container flat square-320 center">
+    <div class="icone" style="background-image:url('/static/peytalaneApp/helium/coctail.svg')">
+    </div>
+    <div class="title">S'inscrire sans tournoi</div>
+</a>
+</div>
+{%endblock%}

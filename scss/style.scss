@@ -120,7 +120,10 @@ label
 
 .square-320 .icone
 {
-    width: 250px;    
+    height: 257px; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;   
 }
 
 .square-320 .title
