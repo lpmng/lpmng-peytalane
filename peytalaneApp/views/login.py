@@ -27,12 +27,11 @@ class Login(View):
             if(user):
                 
                 # we save connected user 
-                request.session['username'] = user['uid']
-                request.session['lastname'] = user['surname']
-                request.session['firstname'] = user['commonname']
+                request.session['username'] = user['username']
+                request.session['token'] = user['token']
 
                 # if user doesn't exist in bdd we create it
-                obj, created  = User.objects.get_or_create(username=user['uid'])
+                obj, created  = User.objects.get_or_create(username=user['username'])
                 return HttpResponseRedirect(reverse('reservation'))
             else:
                 error = "Utilisateur ou mot de passe invalide"

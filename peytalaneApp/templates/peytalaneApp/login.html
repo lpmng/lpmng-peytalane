@@ -3,7 +3,12 @@
 <div class="top-container container flex flex-800">
     <form method="POST" action="/login/" class="white-container">
         {% csrf_token %}
-        <h2 class="center">Connection</h2>
+        <h2 class="center">Connexion</h2>
+        {% if error %}
+        <div class="center">
+        <strong>{{ error }}</strong>
+        </div>
+        {% endif %}
         <fieldset class="flex one">
             <label>Pseudo:{{ form.username }}</label>
         </fieldset>
@@ -11,8 +16,9 @@
             <label>Mot de passe:{{ form.password }}</label>
         </fieldset>
         <div class="center">
-            <!-- <input type="submit" value="Se connecter" class="center"/> -->
-            <a href="/reservation" class="button" class="center">Se connecter</a>
+            <input type="submit" class="success" value="Se connecter" class="center"/>
+            <a href="/inscription/" type="submit" class="error" class="center">Je n'ai pas de compte</a>
+            <!-- <a href="/reservation" class="button" class="center">Se connecter</a> -->
         </div>
     </form>
 </div>
