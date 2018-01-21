@@ -26,6 +26,16 @@ if you want to edit stylesheet:
     $ gem install sass
 ```
 
+to be connected with API (Arel and lpmng-core), you have to create two files:
+ * peytalaneApp/keyArel.json
+ * peytalaneApp/keyCore.json
+
+```json
+    {
+        "key":"thekey",
+        "app":"appName"
+    }
+```  
 <span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
 
 you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
@@ -40,5 +50,5 @@ Launch server
 Compile sass
 ------------
 ```
-    $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed4
+    $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed
 ```

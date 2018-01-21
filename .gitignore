@@ -36,3 +36,4 @@ bower_components
 db.sqlite3
 .vscode/
 keyArel.json
+keyCore.json

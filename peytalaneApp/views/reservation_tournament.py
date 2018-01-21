@@ -23,5 +23,5 @@ class Reservation_tournament(View):
 
         return render(request, self.html, locals())
 
-    def add_tournament(id):
+    def add_tournament(self,id):
         print('plop')
