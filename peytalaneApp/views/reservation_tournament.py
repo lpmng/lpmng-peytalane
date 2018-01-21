@@ -18,10 +18,18 @@ class Reservation_tournament(View):
 
         tournaments_list = Tournament.objects.all()
 
+        print(tournaments_list)
+
         if 'id_tournament' in request.GET:
             self.add_tournament(0)
 
         return render(request, self.html, locals())
+
+    def post(self,request,*args, **kwargs):
+        print(request.POST)
+        tournaments_list = Tournament.objects.all()
+        return render(request, self.html, locals())
+
 
     def add_tournament(self,id):
         print('plop')

@@ -7,9 +7,9 @@ class Participant(models.Model):
 
 class Tournament(models.Model):
     name = models.CharField(max_length=50)
-    participants = models.ManyToManyField(Participant,null=True)
+    participants = models.ManyToManyField(Participant,null=True,blank=True)
     number_participants = models.IntegerField()
-    img = models.FileField(upload_to='static')
+    img = models.FileField(upload_to='peytalaneApp/static/')
 
 
 

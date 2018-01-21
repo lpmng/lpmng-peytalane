@@ -1,18 +1,51 @@
 {% extends 'peytalaneApp/reservation-layout.html' %}
 {% block reservation-content %}
+<form method="POST" action="/reservation/tournament/">
+{% csrf_token %}
 <h2>Choisir un tournoi:</h2>
 <div class="flex">
     {% for t in tournaments_list %}
-    <a href="/reservation/tournament?id_tournament={{t.id}}" class="white-container flat square-320 center">
+    <input id="tournament{{t.id}}" type="radio" name="tournoi" class="tournoi-check" value="{{t.id}}">
+    <label for="tournament{{t.id}}" class="white-container flat square-320 center">
         <div class="icone" style="background-image:url('/{{t.img.url}}')">
         </div>
         <div class="title">{{t.name}}</div>
-    </a>
+    </label>
     {%endfor%}
-<a href="/reservation/tournament/" class="white-container flat square-320 center">
-    <div class="icone" style="background-image:url('/static/peytalaneApp/helium/coctail.svg')">
-    </div>
-    <div class="title">S'inscrire sans tournoi</div>
-</a>
 </div>
+<div class="center buttons-list">
+    <label for="modal_1" class="button success">S'inscrire à un tournoi</label>
+    <input type="submit" class="button " name="no-tournament" value="S'inscrire sans tournoi"/>
+</div>
+
+<!-- ** ** ** ** ** ** ** Modal ** ** ** ** ** ** ** -->
+
+<div class="modal">
+    <input id="modal_1" type="checkbox" />
+    <label for="modal_1" class="overlay"></label>
+    <article>
+        <header>
+        <h3>Quel sera votre Pseudo?</h3>
+        <label for="modal_1" class="close">&times;</label>
+        </header>
+        <section class="content">
+            <input type="text" name="pseudo" placeholder="jujudu42"/>
+        </section>
+        <footer>
+        <input type="submit" class="button" value="s'inscrire"/>
+        <label for="modal_1" class="button dangerous">
+            Cancel
+        </label>
+        </footer>
+    </article>
+</div>
+</form>
+<script src="/static/js/tournament.js"></script>
+<style>
+    .tournoi-check:checked + label
+    {
+        border:1px solid green;
+
+    }
+</style>
 {%endblock%}
