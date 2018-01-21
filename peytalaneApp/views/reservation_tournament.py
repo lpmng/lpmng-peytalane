@@ -12,9 +12,7 @@ class Reservation_tournament(View):
         Renvoie la page d'Inscription au chargement de la page
     """
     def get(self, request, *args, **kwargs):
-        t = Transaction(10,"Pizza 4 fromages Grande",None)
-        t2 = Transaction(4,"Payement lan non cotisant",None)
-        transactions_list = [t,t2]
+        transactions_list = request.session['transactions']
 
         tournaments_list = Tournament.objects.all()
 
@@ -26,10 +24,42 @@ class Reservation_tournament(View):
         return render(request, self.html, locals())
 
     def post(self,request,*args, **kwargs):
-        print(request.POST)
+        user = User.objects.get(username = request.session['username'])
+        # if inscription without tournament...
+        if('no-tournament' in request.POST):
+            if self.inscription_lan(user,request):
+                success = "Inscription ajouté au panier"
+            else:
+                error = "Inscription non ajouté au panier"
+        elif( 'tournoi' in request.POST and 'pseudo' in request.POST): # inscription with tournament
+            success = self.add_tournament(request.POST['tournoi'][0],request.POST['pseudo'][0],user,request)
+        else:
+            error = "Les données envoyés ne sont pas valide"
+
         tournaments_list = Tournament.objects.all()
+        transactions_list = request.session['transactions']
         return render(request, self.html, locals())
 
+    
+    def inscription_lan(self,user,request):
+        
+        if not user.lan:
+            transaction_obj = { 
+                                "price":4,
+                                "product":"Réservation lan",
+                                "action_payment":"lan",
+                                "args":{"user":user.username,}
+                              }
+            transactions_list = request.session['transactions']
+            transactions_list.append(transaction_obj)
+            request.session['transactions'] = transactions_list
+            return True
+        else:
+            return False
 
-    def add_tournament(self,id):
-        print('plop')
+
+
+
+    def add_tournament(self,id,pseudo,user,request):
+        self.inscription_lan(user,request)
+        return "Réservation ajouté dans le panier"
