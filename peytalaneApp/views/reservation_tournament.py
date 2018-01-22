@@ -32,7 +32,9 @@ class Reservation_tournament(View):
             else:
                 error = "Inscription non ajouté au panier"
         elif( 'tournoi' in request.POST and 'pseudo' in request.POST): # inscription with tournament
-            success = self.add_tournament(request.POST['tournoi'][0],request.POST['pseudo'][0],user,request)
+            tournament = Tournament.objects.get(id = request.POST['tournoi'][0])
+            self.inscription_lan(user,request)
+            success = self.add_tournament(tournament,request.POST['pseudo'][0],user,request)
         else:
             error = "Les données envoyés ne sont pas valide"
 
@@ -40,10 +42,11 @@ class Reservation_tournament(View):
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
 
-    
+    #add transaction to book to the lan 
     def inscription_lan(self,user,request):
         
         if not user.lan:
+            self.clear_transaction(request,"lan")
             transaction_obj = { 
                                 "price":4,
                                 "product":"Réservation lan",
@@ -58,8 +61,26 @@ class Reservation_tournament(View):
             return False
 
 
-
-
-    def add_tournament(self,id,pseudo,user,request):
-        self.inscription_lan(user,request)
+    #add transaction to book access to tournament
+    def add_tournament(self,tournament,pseudo,user,request):
+        self.clear_transaction(request,"tournament")
+        transaction_obj =   { 
+                                "price":0,
+                                "product":"inscription tournoi "+tournament.name,
+                                "action_payment":"tournament",
+                                "args":{"user":user.username,"pseudo":pseudo,"id_tournament":tournament.id}
+                            }
+        transactions_list = request.session['transactions']
+        transactions_list.append(transaction_obj)
+        request.session['transactions'] = transactions_list
         return "Réservation ajouté dans le panier"
+
+    # delete all transaction where action_payment = action_payment arg
+    def clear_transaction(self,request,action_payment):
+        transactions_list = request.session['transactions']
+        new_list = []
+        for transaction_obj in transactions_list:
+            if(transaction_obj["action_payment"] != action_payment):
+                new_list.append(transaction_obj)
+
+        request.session['transactions'] = new_list

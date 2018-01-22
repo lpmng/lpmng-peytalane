@@ -3,6 +3,20 @@
 <form method="POST" action="/reservation/tournament/">
 {% csrf_token %}
 <h2>Choisir un tournoi:</h2>
+
+{%if error%}
+<div class="label error">
+    {{ error }}
+</div>
+{%endif%}
+
+{%if success%}
+<div class="label success">
+    {{ success }}
+</div>
+{%endif%}
+
+
 <div class="flex">
     {% for t in tournaments_list %}
     <input id="tournament{{t.id}}" type="radio" name="tournoi" class="tournoi-check" value="{{t.id}}">
