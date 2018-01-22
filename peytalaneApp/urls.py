@@ -3,11 +3,8 @@ from peytalaneApp.views.index import index
 from peytalaneApp.views.inscription import Inscription
 from peytalaneApp.views.login import Login
 from peytalaneApp.views.reservation import Reservation
-<<<<<<< HEAD
 from peytalaneApp.views.reservation_food import Reservation_food
-=======
 from peytalaneApp.views.reservation_tournament import Reservation_tournament
->>>>>>> f04fc667f519533bd00ec9ba96d9d2906de84bfd
 
 urlpatterns = [
     url(r'^$', index, name='index'),
