@@ -33,6 +33,9 @@
 @import '../bower_components/picnic/src/plugins/tooltip/plugin';
 
 @import '../bower_components/picnic/src/plugins/grid/plugin';
+@import '../bower_components/picnic/src/plugins/card/plugin';
+@import '../bower_components/picnic/src/plugins/modal/plugin';
+
 
 /*
  *
@@ -40,6 +43,14 @@
  *
  */
 
- 
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+body
+{
+    font-family: 'Arimo', sans-serif;
+}
+.overlay
+{
+    max-width: none !important;
+}
 @import 'style.scss';
 @import 'reservation.scss';

@@ -5,8 +5,8 @@
             <header class="container" id="reservation-header">
                 <h2>Résumé:</h2>
                 <ul>
-                    <li class="white-container">Lan non payé !</li>
-                    <li class="white-container">Pas de repas</li>
+                    <li class="white-container flat">Lan non payé !</li>
+                    <li class="white-container flat">Pas de repas</li>
                 </ul>
             </header>
             <section class="container">
@@ -17,10 +17,17 @@
         </section>
         <aside id="reservation-resume" class="white-container">
             <div>
+<<<<<<< HEAD
 		<h2>Transaction en cours:</h2>
 		<ul id="reservation-list">
                     {% for transaction in transactions_list %}
                     <li>
+=======
+            <h2>Transaction en cours:</h2>
+            <ul id="reservation-list">
+                {% for transaction in transactions_list %}
+                    <li class="white-container flat">
+>>>>>>> f04fc667f519533bd00ec9ba96d9d2906de84bfd
                         <div class="product">{{ transaction.product }}</div>
                         <div class="price">{{ transaction.price }} € </div>
                     </li>
@@ -37,7 +44,7 @@
         main
         {
             /*background-image:linear-gradient(60deg, #98b5ff, #a4fef5);*/
-            background-color: rgb(240,240,240);
+            background-color: rgb(250,250,250);
             /*
             background-image:linear-gradient(60deg, #7e96d4, #89d4cc);*/
 

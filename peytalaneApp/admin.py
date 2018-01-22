@@ -1,6 +1,7 @@
 from django.contrib import admin
 from peytalaneApp.models_dir.user import User
 from peytalaneApp.models_dir.food import *
+from peytalaneApp.models_dir.tournament import *
 import django
 
 # -- -- -- -- -- -- -- food -- -- -- -- -- -- -- --
@@ -19,3 +20,14 @@ admin.site.register(Option, OptionAdmin)
 admin.site.register(Food, FoodAdmin)
 
 # -- -- -- -- -- -- -- user -- -- -- -- -- -- -- --
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username',)
+
+admin.site.register(User, UserAdmin)
+
+# -- -- -- -- -- -- Tournament -- -- -- -- -- -- --
+
+class TournamentAdmin(admin.ModelAdmin):
+    list_display = ('name','number_participants','img')
+
+admin.site.register(Tournament, TournamentAdmin)

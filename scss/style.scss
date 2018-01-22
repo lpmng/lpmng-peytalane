@@ -14,6 +14,10 @@ li
     
 }
 
+.label.error,.label.success
+{
+    font-size: 1em;
+}
 
 .top-index
 {
@@ -62,6 +66,16 @@ li
 }
 
 
+.buttons-list
+{
+    
+}
+
+.buttons-list .button
+{
+    margin: 20px;
+}
+
 .logo
 {
     width: 200px;
@@ -84,6 +98,13 @@ li
     background-color: rgba(255,255,255,0.95);
     box-shadow: 0 0 0.2em rgba(17,17,17,0.2);
     padding: 10px 3% 10px 3%;
+}
+
+.white-container.flat
+{
+    box-shadow: none;
+    border:1px solid lightgray;
+    box-shadow: 0 0 0.2em rgba(200,200,200,0.1);
 }
 
 label
@@ -113,7 +134,10 @@ label
 
 .square-320 .icone
 {
-    width: 250px;    
+    height: 257px; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;   
 }
 
 .square-320 .title
