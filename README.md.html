@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.51 in css mode. -->
+<html>
+  <head>
+    <title>README.md</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #c8c8d0;
+        background-color: #13131c;
+      }
+      .markdown-bold {
+        /* markdown-bold-face */
+        font-weight: bold;
+      }
+      .markdown-code {
+        /* markdown-code-face */
+        color: #ffffff;
+      }
+      .markdown-header-face-1 {
+        /* markdown-header-face-1 */
+        color: #98fb98;
+        font-weight: bold;
+      }
+      .markdown-header-face-2 {
+        /* markdown-header-face-2 */
+        color: #98fb98;
+        font-weight: bold;
+      }
+      .markdown-header-rule {
+        /* markdown-header-rule-face */
+        color: #60696b;
+      }
+      .markdown-html-attr-name {
+        /* markdown-html-attr-name-face */
+        color: #00c5cd;
+      }
+      .markdown-html-attr-value {
+        /* markdown-html-attr-value-face */
+        color: #eec900;
+      }
+      .markdown-html-tag-delimiter {
+        /* markdown-html-tag-delimiter-face */
+        color: #60696b;
+      }
+      .markdown-html-tag-name {
+        /* markdown-html-tag-name-face */
+        color: #d2691e;
+      }
+      .markdown-inline-code {
+        /* markdown-inline-code-face */
+        color: #ffffff;
+      }
+      .markdown-language-keyword {
+        /* markdown-language-keyword-face */
+        color: #d2691e;
+      }
+      .markdown-markup {
+        /* markdown-markup-face */
+        color: #60696b;
+      }
+      .markdown-pre {
+        /* markdown-pre-face */
+        color: #ffffff;
+      }
+
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="markdown-header-face-1">Peytalane</span>
+<span class="markdown-header-rule">=========</span>
+
+<span class="markdown-header-face-2">Installation</span>
+<span class="markdown-header-rule">------------</span>
+
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">powershell</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ pip install -r requirements.txt
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">bash</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ python manage.py makemigrations peytalaneApp
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">sh</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ python manage.py migrate peytalaneApp
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+if you want to edit stylesheet:
+
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">zsh</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ bower install
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">csh</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ gem install sass
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+<span class="markdown-html-tag-delimiter">&lt;</span><span class="markdown-html-tag-name">span</span> <span class="markdown-html-attr-name">style</span><span class="markdown-html-tag-delimiter">=</span><span class="markdown-html-attr-value">"color:red"</span><span class="markdown-html-tag-delimiter">&gt;</span> <span class="markdown-markup">**</span><span class="markdown-bold">Peytalane is dependant of lpmng-core</span><span class="markdown-markup">**</span> <span class="markdown-html-tag-delimiter">&lt;/</span><span class="markdown-html-tag-name">span</span><span class="markdown-html-tag-delimiter">&gt;</span>
+
+you can edit lpmng-core url in <span class="markdown-markup">```</span><span class="markdown-inline-code"> peytalaneApp/functions/core.py </span><span class="markdown-markup">```</span>
+
+<span class="markdown-header-face-2">Launch server</span>
+<span class="markdown-header-rule">-------------</span>
+
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code"><span class="markdown-language-keyword">batch</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ python manage.py runserver
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span>
+<span class="markdown-header-face-2">Compile sass</span>
+<span class="markdown-header-rule">------------</span>
+<span class="markdown-code"><span class="markdown-markup">```</span></span><span class="markdown-code">
+</span><span class="markdown-code"><span class="markdown-pre">    $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed4
+</span></span><span class="markdown-code"><span class="markdown-markup">```</span></span></pre>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'peytalaneApp/reservation-layout.html' %}
+{% block reservation-content %}
+<h2>Catalogue des pizzas:</h2>
+<h3 >Grande pizza : 10€</h3>
+<h3>Moyenne pizza : 7€</h3>
+<div class="flex">
+    <ul id="food-list">
+	{% for pizza in pizzas_list %}
+	<li>
+	    <div class="imgProduit"><img src="/static/peytalaneApp/helium/pizza.svg"/></div>
+	    <div class="product">{{ pizza.name }}</div>
+	    <div class="buttonCommand"> <button type="button">Commander</button> </div>
+	</li>
+	{% endfor %}
+    </ul>    <!-- 
+		  <a href="/reservation/tournoi/" class="white-container square-320 center">
+		  <img  class="icone" src="/static/peytalaneApp/helium/mouse.svg"/>
+		  <div class="title">Choisir son tournoi</div>
+		  </a>
+		  <a href="/reservation/food/" class="white-container square-320 center">
+		  <img class="icone" src="/static/peytalaneApp/helium/pizza.svg"/>            
+		  <div class="title">Choisir à manger</div>
+		  </a> -->
+</div>
+{%endblock%}

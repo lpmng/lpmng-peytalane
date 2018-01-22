@@ -6,7 +6,7 @@ from peytalaneApp.functions.transaction import Transaction
 #pages après le login
 class Reservation(View):
     html = 'peytalaneApp/reservation-index.html'
-
+    
     """
         Renvoie la page d'Inscription au chargement de la page
     """
