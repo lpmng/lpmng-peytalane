@@ -14,11 +14,6 @@ urlpatterns = [
     url(r'^inscription/$', Inscription.as_view(), name='inscription'),
     url(r'^login/$', Login.as_view(), name='login'),
     url(r'^reservation/$', Reservation.as_view(), name='reservation'),
-<<<<<<< HEAD
-    url(r'^reservation/food/$', Reservation_food.as_view(), name='reservation-food'),  
-]
-=======
+    url(r'^reservation/food/$', Reservation_food.as_view(), name='reservation-food'), 
     url(r'^reservation/tournament/$', Reservation_tournament.as_view(), name='reservation_tournament'),
-
 ]
->>>>>>> f04fc667f519533bd00ec9ba96d9d2906de84bfd
