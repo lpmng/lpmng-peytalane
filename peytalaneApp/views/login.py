@@ -17,21 +17,22 @@ class Login(View):
         return render(request, self.html, locals())
 
     def post(self,request,*args):
-        core = CoreRequest()
+        #core = CoreRequest()
         form = LoginForm(request.POST)
         error = ""
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = core.logUser(username,password)
-            if(user):
+            #user = core.logUser(username,password)
+            if(True):
                 
                 # we save connected user 
-                request.session['username'] = user['username']
-                request.session['token'] = user['token']
+                request.session['username'] = "toto"
+                request.session['token'] = "bob"
+                request.session['transactions'] = []
 
                 # if user doesn't exist in bdd we create it
-                obj, created  = User.objects.get_or_create(username=user['username'])
+                obj, created  = User.objects.get_or_create(username="toto")
                 return HttpResponseRedirect(reverse('reservation'))
             else:
                 error = "Utilisateur ou mot de passe invalide"

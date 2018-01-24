@@ -12,11 +12,15 @@ class ValueOptionAdmin(admin.ModelAdmin):
 class OptionAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
+class ValueIngredientAdmin(admin.ModelAdmin):
+    list_display = ('value',)    
+    
 class FoodAdmin(admin.ModelAdmin):
     list_display = ('name', 'user')
 
 admin.site.register(ValueOption, ValueOptionAdmin)
 admin.site.register(Option, OptionAdmin)
+admin.site.register(ValueIngredient, ValueIngredientAdmin)
 admin.site.register(Food, FoodAdmin)
 
 # -- -- -- -- -- -- -- user -- -- -- -- -- -- -- --

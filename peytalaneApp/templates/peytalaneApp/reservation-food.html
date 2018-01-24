@@ -1,7 +1,7 @@
 {% extends 'peytalaneApp/reservation-layout.html' %}
 {% block reservation-content %}
 <h2>Catalogue des pizzas:</h2>
-<h3 >Grande pizza : 10€</h3>
+<h3>Grande pizza : 10€</h3>
 <h3>Moyenne pizza : 7€</h3>
 <div class="flex">
     <ul id="food-list">
@@ -9,17 +9,48 @@
 	<li>
 	    <div class="imgProduit"><img src="/static/peytalaneApp/helium/pizza.svg"/></div>
 	    <div class="product">{{ pizza.name }}</div>
-	    <div class="buttonCommand"> <button type="button">Commander</button> </div>
+	    <div class="ingredient">
+		{% for ingredient in pizza.ingredients.values.all %}
+		{{ ingredient.value }}
+		{% endfor %}
+	    </div>
+	    <label for="optionFood{{ pizza.name}}" class="button">Commander</label>
 	</li>
+	<!-- Modal for option pizza -->
+	<form action="/reservation/food/" method="POST" class="modal">
+	    {% csrf_token %}
+	    <input id="pizzaName" name="pizzaName" value="{{ pizza.name }}" hidden>
+	    <input id="pizzaId" name="pizzaId" value="{{ pizza.id }}" hidden>
+	    <input id="optionFood{{ pizza.name}}" type="checkbox" />
+	    <label for="optionFood{{ pizza.name}}" class="overlay"></label>
+	    <article>
+		<header>
+		    <h3>Choix des options</h3>
+		    <label for="optionFood{{ pizza.name}}" class="close">&times;</label>
+		</header>
+		<section class="content">
+		    {% for option in pizza.options.all %}
+		    <label>
+			{{ option.name }}
+			<select name="{{ option.name }}">
+			    {% for choix in option.values.all %}
+			    <option value="{{ choix.id }}">
+				{{ choix.value }}
+			    </option>
+			    {% endfor %}
+			</select>
+		    </label>
+		    {% endfor %}
+		</section>
+		<footer>
+		    <input type="submit" class="button" value="Commander" />
+		    <label for="optionFood{{ pizza.name}}" class="button dangerous">
+			Annuler
+		    </label>
+		</footer>
+	    </article>
+	</form>
 	{% endfor %}
-    </ul>    <!-- 
-		  <a href="/reservation/tournoi/" class="white-container square-320 center">
-		  <img  class="icone" src="/static/peytalaneApp/helium/mouse.svg"/>
-		  <div class="title">Choisir son tournoi</div>
-		  </a>
-		  <a href="/reservation/food/" class="white-container square-320 center">
-		  <img class="icone" src="/static/peytalaneApp/helium/pizza.svg"/>            
-		  <div class="title">Choisir à manger</div>
-		  </a> -->
+    </ul> 
 </div>
 {%endblock%}

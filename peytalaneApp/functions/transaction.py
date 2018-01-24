@@ -26,8 +26,6 @@ class Transaction():
         participant.game_pseudo = pseudo
         participant.username = user.username
         tournament.participant.add(participant)
-    
-
 
     def callback_lan(self,args):
         user = User.objects.get(username = args["user"])
