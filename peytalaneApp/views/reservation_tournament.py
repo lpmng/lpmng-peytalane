@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.tournament import *
+from peytalaneApp.functions.decorator import IsLogin
+
 
 #pages après le login
 class Reservation_tournament(View):
@@ -11,6 +13,7 @@ class Reservation_tournament(View):
     """
         Renvoie la page d'Inscription au chargement de la page
     """
+    @IsLogin
     def get(self, request, *args, **kwargs):
         transactions_list = request.session['transactions']
 
@@ -23,6 +26,8 @@ class Reservation_tournament(View):
 
         return render(request, self.html, locals())
 
+
+    @IsLogin
     def post(self,request,*args, **kwargs):
         user = User.objects.get(username = request.session['username'])
         # if inscription without tournament...

@@ -1,27 +1,30 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
-<!-- middle page with infos-->
-{% if form.subject.errors %}
-<ol>
-    {% for error in form.subject.errors %}
-    <li><strong>{{ error|escape }}</strong></li>
-    {% endfor %}Z
-</ol>
-{% endif %}
-<div class="top-container container flex flex-800">
-    <form class="white-container">
+
+<div class="center top-container">
+    {% if error %}
+    <div class="center label error">
+
+        <strong>{{ error }}</strong>
+    </div>
+    {% endif %}
+</div>
+
+
+<div class="container flex flex-800">
+    <form class="white-container" action="/inscription/" method="POST">
+        {% csrf_token %}
         <h2 class="center">Inscription non EISTI</h2>
         <fieldset class="flex two flex-450">
             <label>Nom:{{ form.lastName }}</label>
             <label>Prenom:{{ form.firstName }}</label>
         </fieldset>
         <fieldset class="flex two flex-450">
-            <label>Mail:{{ form.mail }}</label>
-            <label>Pseudo:{{ form.username }}</label>
-        </fieldset>
-        <fieldset class="flex two flex-450">
             <label>Mot de passe:{{ form.password }}</label>
             <label>Confirmation mot de passe:{{ form.passwordConfirm }}</label>
+        </fieldset>
+        <fieldset class="flex flex-450">
+            <label>Mail:{{ form.mail }}</label>
         </fieldset>
         <div class="center">
             <input type="submit" value="S'inscrire" class="center"/>
