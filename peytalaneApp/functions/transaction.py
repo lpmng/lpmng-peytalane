@@ -1,6 +1,6 @@
 from peytalaneApp.models_dir.user import User
 from peytalaneApp.models_dir.tournament import *
-
+from peytalaneApp.models_dir.food import *
 
 class Transaction():
     
@@ -30,3 +30,12 @@ class Transaction():
     def callback_lan(self,args):
         user = User.objects.get(username = args["user"])
         user.lan = True
+
+    def callback_food(self,args):
+        user = User.objects.get(username = args["user"])
+        food = Food()
+        # id ?
+        food.option.value =  args["taille"]
+        food.option.value = args["base"]
+        
+ 

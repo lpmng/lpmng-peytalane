@@ -28,3 +28,5 @@ class Food(models.Model):
         return str(self.name)
     
 
+class FoodBuy(models.Model):
+    

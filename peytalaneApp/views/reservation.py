@@ -14,3 +14,4 @@ class Reservation(View):
     def get(self, request, *args, **kwargs):
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
+ 

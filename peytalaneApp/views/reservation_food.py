@@ -14,6 +14,7 @@ class Reservation_food(View):
         Renvoi la page de sélection des pizzas
     """
     def get(self, request, *args, **kwargs):
+        transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
         for a in pizzas_list:
             for b in a.options.all():
@@ -35,7 +36,7 @@ class Reservation_food(View):
             "price":prix,
             "product":request.POST["pizzaName"]+taille,
             "action_payment":"food",
-            "args":{"user":user.username}#"id":request.POST["pizzaId"]}
+            "args":{"user":user.username,"id_food":request.POST["pizzaId"],"taille":request.POST["Taille"],"base":request.POST["Base"]}
         }
         transactions_list = request.session['transactions']
         transactions_list.append(transaction_obj)
