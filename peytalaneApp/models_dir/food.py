@@ -1,5 +1,8 @@
 from django.db import models
+from peytalaneApp.models_dir.user import User
+
 # Create your models here.
+
 
 class ValueOption(models.Model):
     value = models.CharField(max_length=50) # EX: oui / non / grande / petite ...
@@ -13,6 +16,7 @@ class Option(models.Model):
         return str(self.name)
 
 class ValueIngredient(models.Model):
+
     value = models.CharField(max_length=50) # EX: tomates / poulet / chorizo ...
     def __str__(self):
         return str(self.value)
@@ -29,4 +33,5 @@ class Food(models.Model):
     
 
 class FoodBuy(models.Model):
-    
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    #food

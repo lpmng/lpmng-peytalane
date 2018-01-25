@@ -10,6 +10,3 @@ class Tournament(models.Model):
     participants = models.ManyToManyField(Participant,null=True,blank=True)
     number_participants = models.IntegerField()
     img = models.FileField(upload_to='peytalaneApp/static/')
-
-
-
