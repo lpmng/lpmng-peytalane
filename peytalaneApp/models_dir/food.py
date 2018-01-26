@@ -27,11 +27,10 @@ class Food(models.Model):
     name = models.CharField(max_length=50) # EX : kebab, pizza 4 fromages, pizza carnivore...
     options = models.ManyToManyField(Option)
     ingredients = models.ManyToManyField(ValueIngredient)
-    user = models.CharField(max_length=100,blank=True, null=True) #Uid user in the core
     def __str__(self):
         return str(self.name)
     
 
 class FoodBuy(models.Model):
-    username = models.ForeignKey(User,on_delete=models.CASCADE)
-    #food
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    food = models.ForeignKey(Food,on_delete=models.CASCADE)

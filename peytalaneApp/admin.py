@@ -16,7 +16,7 @@ class ValueIngredientAdmin(admin.ModelAdmin):
     list_display = ('value',)    
     
 class FoodAdmin(admin.ModelAdmin):
-    list_display = ('name', 'user')
+    list_display = ('name',)
 
 admin.site.register(ValueOption, ValueOptionAdmin)
 admin.site.register(Option, OptionAdmin)
