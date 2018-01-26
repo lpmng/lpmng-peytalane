@@ -17,7 +17,12 @@
             <label for="bmenub" class="burger pseudo button">&#8801;</label>
         
             <div class="menu">
+                {% if 'username' in request.session %}
+                    <a href="/reservation/">Réserver la lan</a>
+                    <a href="/logout/">Déconnection</a>
+                {% else %}
                 <a href="/login/" class="button icon-puzzle">Connexion</a>
+                {% endif %}
             </div>
         </nav>
         <main>

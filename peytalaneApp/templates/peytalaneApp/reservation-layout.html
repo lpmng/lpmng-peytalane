@@ -5,8 +5,25 @@
             <header class="container" id="reservation-header">
                 <h2>Résumé:</h2>
                 <ul>
+                    {% if lan_is_reserved %}
+                    <li class="white-container flat">Lan payé !</li>
+                    {% else %}
                     <li class="white-container flat">Lan non payé !</li>
+                    {% endif %}
+                    {% if have_foods %}
+                    
+                        <li class="white-container flat">
+                            
+                                <ul id="food-reservation-resume">
+                                        {% for food in have_foods %}
+                                    <li>{{food}}</li>
+                                    {% endfor %}  
+                                </ul>
+                                                          
+                        </li>
+                    {% else %}
                     <li class="white-container flat">Pas de repas</li>
+                    {% endif %}
                 </ul>
             </header>
             <section class="container">
@@ -41,6 +58,12 @@
             /*
             background-image:linear-gradient(60deg, #7e96d4, #89d4cc);*/
 
+        }
+
+        #food-reservation-resume
+        {
+            list-style-type:circle !important;
+            font-size: 1em !important;
         }
     </style>
 {% endblock %}

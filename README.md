@@ -52,3 +52,14 @@ Compile sass
 ```
     $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed
 ```
+
+TODO
+----
+* Display real foods which is order on resume section : info is store in `have_foods` var in `peytalaneApp/function/decorator.py`
+* Do and /or verify all callback in `peytalaneApp/function/transaction.py`
+* In each callback, store a summary of the transaction to the bdd, there is a model `payment`
+* Do front-page for payment
+* Do payment request to lydia api on /api/request/do
+* When payment is valid:    
+    - Transform request.sessions["transactions"] array to array of transactions object
+    - For all transaction do transaction.payment

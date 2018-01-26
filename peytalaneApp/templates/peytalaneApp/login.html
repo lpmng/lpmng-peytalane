@@ -1,14 +1,23 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
-<div class="top-container container flex flex-800">
+<div class="center top-container">
+        {% if error %}
+        <div class="center label error">
+    
+            <strong>{{ error }}</strong>
+        </div>
+        {% endif %}
+        {% if info %}
+        <div class="center label success">
+    
+            <strong>{{ info }}</strong>
+        </div>
+        {% endif %}
+</div>
+<div class="container flex flex-800">
     <form method="POST" action="/login/" class="white-container">
         {% csrf_token %}
         <h2 class="center">Connexion</h2>
-        {% if error %}
-        <div class="center">
-        <strong>{{ error }}</strong>
-        </div>
-        {% endif %}
         <fieldset class="flex one">
             <label>Pseudo:{{ form.username }}</label>
         </fieldset>
