@@ -16,7 +16,7 @@ class Reservation_food(View):
     """
     RENDER_HTML = 'peytalaneApp/reservation-food.html'
     @IsLogin
-    def get(self, request, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
         transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
         return render(request, self.RENDER_HTML, locals())

@@ -14,7 +14,7 @@ class Reservation_tournament(View):
         Renvoie la page d'Inscription au chargement de la page
     """
     @IsLogin
-    def get(self, request, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
         transactions_list = request.session['transactions']
 
         tournaments_list = Tournament.objects.all()
