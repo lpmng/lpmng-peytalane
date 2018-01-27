@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class CoreRequest():
-    urlCore = "http://172.17.6.1:8000"
+    urlCore = "http://127.0.0.1:8001"
 
     def get_token(self,user,pwd):
         """

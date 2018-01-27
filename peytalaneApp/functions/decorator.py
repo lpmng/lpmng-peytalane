@@ -15,7 +15,7 @@ def IsLogin(function):
                 lan_is_reserved = 0
             
             # TODO : change it by real data
-            have_foods = ["pizza 4 fromage","kebab tomate oignon"]
+            have_foods = [elem.food for elem in user.foodbuy_set.all()]
             
             return function(self,request,lan_is_reserved,have_foods, *args, **kwargs)
         else:
