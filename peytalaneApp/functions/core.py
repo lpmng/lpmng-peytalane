@@ -1,3 +1,4 @@
+
 import os
 import json
 import requests
@@ -10,9 +11,9 @@ class CoreRequest():
 
     def get_token(self,user,pwd):
         """
-            recupere un token de l'api d'arel si le user et le mot de passe correspondent
+            recupere un token de l'api du core si le user et le mot de passe correspondent
         """
-        #on charge les identifiants pour se connecter à l'api d'arel (il faudrait faire un try catch...)
+        #on charge les identifiants pour se connecter à l'api du core (il faudrait faire un try catch...)
         json_data=open(BASE_DIR+'/keyCore.json')
         if(json_data):
             data = json.load(json_data)
@@ -36,13 +37,12 @@ class CoreRequest():
 
     def requete_core_get(self,url_api,token):
         """
-        fait une requete sur l'api d'arel et renvoi le résultat en json (le token doit être valide)
+        fait une requete sur l'api du core et renvoi le résultat en json (le token doit être valide)
         """
         headers = {'Accept':'application/json','AUTHORIZATION':'Bearer '+token}
         data = {
                 'format':'json',
             }
-        print('plop')
         http_response = requests.get(self.urlCore+url_api,headers = headers,data=data)
         if http_response.status_code == 200:
             return http_response.json()
@@ -59,8 +59,6 @@ class CoreRequest():
             'tel':'none'
         }
         req = requests.post(self.urlCore+"/users/", data = data)
-        print(req.status_code)
-        print(req.text)
         if(req.status_code == 201):
             return True
         else:
@@ -69,9 +67,8 @@ class CoreRequest():
     def logUser(self,username,password):
         try:
             token = self.get_token(username,password)
-            print(token+"\n")   
             if token:
-                print('yop')
+                print('test')
                 req = self.requete_core_get("/users/"+username+"/",token)
                 req['token'] = token
                 return req
