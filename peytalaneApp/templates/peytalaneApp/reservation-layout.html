@@ -11,15 +11,15 @@
                     <li class="white-container flat">Lan non payé !</li>
                     {% endif %}
                     {% if have_foods %}
-                    
+
                         <li class="white-container flat">
-                            
+
                                 <ul id="food-reservation-resume">
                                         {% for food in have_foods %}
                                     <li>{{food}}</li>
-                                    {% endfor %}  
+                                    {% endfor %}
                                 </ul>
-                                                          
+
                         </li>
                     {% else %}
                     <li class="white-container flat">Pas de repas</li>
@@ -28,7 +28,7 @@
             </header>
             <section class="container">
                 {% block reservation-content %}
-            
+
                 {% endblock %}
             </section>
         </section>
@@ -43,10 +43,10 @@
                     </li>
                 {% endfor %}
             </ul>
-                
+
             </div>
             <div class="center">
-            <a href="#" class="button mainButton">Payer</a>
+            <a href="/pay/" class="button mainButton">Payer</a>
             </div>
         </aside>
     </div>
@@ -67,4 +67,3 @@
         }
     </style>
 {% endblock %}
- 

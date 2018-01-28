@@ -1,0 +1,61 @@
+{% extends 'peytalaneApp/layout.html' %}
+{%block content%}
+<form method="POST" action="/pay/">
+{% csrf_token %}
+<h2>Choisir un tournoi:</h2>
+
+{%if error%}
+<div class="label error">
+    {{ error }}
+</div>
+{%endif%}
+
+{%if success%}
+<div class="label success">
+    {{ success }}
+</div>
+{%endif%}
+
+<div class="facture white-container">
+  {% for transaction in transactions_list %}
+      <li class="white-container flat">
+          <p class="product">{{ transaction.product }}</p><p class="price">{{ transaction.price }} € </p>
+
+      </li>
+  {% endfor %}
+  <div class="total">Total : {{total}} €</div>
+</div>
+
+Numéro de téléphone <input id="phone" type="tel" name="telephone">
+<input type="submit" value="OK">
+</form>
+
+
+
+<style>
+  li{
+    list-style-type: none;
+  }
+  .facture{
+    margin: auto;
+    width: 50%;
+  }
+  .total{
+    text-align: right;
+    padding-right: 3px;
+  }
+  .product{
+    text-align:left;
+
+    position:absolute;
+  }
+  .price{
+    text-align: right;
+  }
+  #phone{
+    text-align: center;
+    width: 25%;
+    margin: auto;
+  }
+</style>
+{%endblock%}

@@ -63,12 +63,11 @@ class CoreRequest():
             return True
         else:
             return False
-    
+
     def logUser(self,username,password):
         try:
             token = self.get_token(username,password)
             if token:
-                print('test')
                 req = self.requete_core_get("/users/"+username+"/",token)
                 req['token'] = token
                 return req
