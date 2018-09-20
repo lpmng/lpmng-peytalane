@@ -1,28 +1,36 @@
 Peytalane
 =========
 
+Use virtualenv
+--------------
+```
+    $ python3 -m venv env
+    $ source env/bin/activate
+```
+
+
 Installation
 ------------
 
-```powershell
+```
     $ pip install -r requirements.txt
 ```
 
-```bash
+```
     $ python manage.py makemigrations peytalaneApp
 ```
 
-```sh
+```
     $ python manage.py migrate peytalaneApp
 ```
 
 if you want to edit stylesheet:
 
-```zsh
+```
     $ bower install
 ```
 
-```csh
+```
     $ gem install sass
 ```
 
