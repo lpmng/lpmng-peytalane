@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.food import Food
+from peytalaneApp.models_dir.food import ValueOption
 from peytalaneApp.models_dir.user import User
 from peytalaneApp.functions.decorator import IsLogin
 
@@ -18,6 +19,7 @@ class Reservation_food(View):
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
         transactions_list = request.session['transactions']
+        print(transactions_list)
         pizzas_list = Food.objects.all()
         return render(request, self.RENDER_HTML, locals())
     
@@ -25,20 +27,35 @@ class Reservation_food(View):
     @IsLogin
     def post(self, request, *args, **kwargs):
         user = User.objects.get(username=request.session['username'])
-        pizzas_list = Food.objects.all()
-        if request.POST["Taille"] == '1':
-            taille = " Grande"
-            prix = 10
-        else:
-            prix = 7
-            taille = " Petite"
+        
+        print(request.POST)
+
+        selected_pizza = Food.objects.get(id = request.POST["pizzaId"])
+        
+        options = request.POST.copy()
+        del options['csrfmiddlewaretoken']
+        del options['pizzaId']
+        del options['pizzaName']
+
+        price = selected_pizza.price
+
+        args_transaction = dict()
+        args_transaction["id_food"] = request.POST["pizzaId"]
+        args_transaction["options"] = options.copy()
+        args_transaction["user"] = user.username
+
+        product_name = request.POST["pizzaName"]
+
+        for options_key in options.keys():
+            selected_value = ValueOption.objects.get(id = options[options_key])
+            product_name = product_name + "<br/>" + options_key + ":" + selected_value.value
+            price = price + selected_value.price
+        
         transaction_obj = {
-            "price": prix,
-            "product": request.POST["pizzaName"] + taille,
+            "price": price,
+            "product": product_name,
             "action_payment": "food",
-            "args": {"user": user.username,
-                     "id_food": request.POST["pizzaId"],
-                     "taille": request.POST["Taille"]}
+            "args": args_transaction
         }
         transactions_list = request.session['transactions']
         transactions_list.append(transaction_obj)

@@ -6,6 +6,7 @@ from peytalaneApp.models_dir.user import User
 
 class ValueOption(models.Model):
     value = models.CharField(max_length=50) # EX: oui / non / grande / petite ...
+    price = models.IntegerField()
     def __str__(self):
         return str(self.value)
 
@@ -27,6 +28,7 @@ class Food(models.Model):
     name = models.CharField(max_length=50) # EX : kebab, pizza 4 fromages, pizza carnivore...
     options = models.ManyToManyField(Option)
     ingredients = models.ManyToManyField(ValueIngredient)
+    price = models.IntegerField()
     def __str__(self):
         return str(self.name)
     
