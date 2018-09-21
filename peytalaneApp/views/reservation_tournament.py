@@ -36,7 +36,9 @@ class Reservation_tournament(View):
                 success = "Inscription ajoutée au panier"
             else:
                 error = "Inscription non ajoutée au panier"
-        elif( 'tournoi' in request.POST and 'pseudo' in request.POST): # inscription with tournament
+        elif not 'tournoi' in request.POST:
+            error = "Veuillez selectionner un tournoi"
+        elif 'pseudo' in request.POST: # inscription with tournament
             tournament = Tournament.objects.get(id = request.POST['tournoi'][0])
             self.inscription_lan(user,request)
             success = self.add_tournament(tournament,request.POST['pseudo'][0],user,request)

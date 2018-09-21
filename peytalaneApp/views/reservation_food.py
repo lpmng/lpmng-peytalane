@@ -1,5 +1,6 @@
 from django.views import View
 from django.shortcuts import render
+from django.middleware.csrf import CsrfViewMiddleware
 
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.food import Food
@@ -19,13 +20,17 @@ class Reservation_food(View):
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
         transactions_list = request.session['transactions']
-        print(transactions_list)
         pizzas_list = Food.objects.all()
         return render(request, self.RENDER_HTML, locals())
     
 
     @IsLogin
     def post(self, request, *args, **kwargs):
+        #reason = CsrfViewMiddleware().process_view(request, None, (), {})
+        transactions_list = request.session['transactions']
+        pizzas_list = Food.objects.all()
+        #print(reason)
+        #if not reason:
         user = User.objects.get(username=request.session['username'])
         
         print(request.POST)
@@ -57,7 +62,7 @@ class Reservation_food(View):
             "action_payment": "food",
             "args": args_transaction
         }
-        transactions_list = request.session['transactions']
+        
         transactions_list.append(transaction_obj)
         request.session['transactions'] = transactions_list
         return render(request, self.RENDER_HTML, locals())
