@@ -27,11 +27,15 @@ Installation
 if you want to edit stylesheet:
 
 ```
+    $ sudo npm install -g bower
+```
+
+```
     $ bower install
 ```
 
 ```
-    $ gem install sass
+    $ sudo npm install -g sass
 ```
 
 to be connected with API (Arel and lpmng-core), you have to create two files:
