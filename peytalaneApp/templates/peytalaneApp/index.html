@@ -1,26 +1,33 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
+<main>
 <!-- top page with background and date-->
-<div class="center top-container top-index">
+<div class="top-container top-index">
+    
     <h1>Rejoins la prochaine LAN Air-eisti</h1>
-    <p class="date">Le 9 février 2018</p>
+    <img src="/static/peytalaneApp/img/lune-mini.png"/>
+    
 </div>
 
 <!-- middle page with infos-->
-<div class="flex container">
-    <div>
+<div class="container small-container">
+    <div class="flex-inline">
+        <div class="circle-medium white-container flat">
+            <div class="icone" style="background-image:url('/static/peytalaneApp/helium/mouse.svg')"></div>
+        </div>
         <h2 class="center">Choisis ton tournoi</h2>
-        <img class="logo" src="/static/peytalaneApp/img/logo-lol.png">
-        <img class="logo" src="/static/peytalaneApp/img/logo-fifa.jpg">
     </div>
-    <div>
+    <div class="flex-inline small-container">
+        <div class="circle-medium white-container flat">
+            <div class="icone" style="background-image:url('/static/peytalaneApp/helium/pizza.svg')"></div>
+        </div>
         <h2 class="center">Commande à manger</h2>
-        <img class="logo" src="/static/peytalaneApp/img/logo-pizza1.png">
     </div>
 </div>
 <!-- bottom button -->
 <div class="center container">
-    <a href="/inscription/" class="button mainButton">Je participe</a>
+    <a href="/login/" class="button mainButton">Participer</a>
 </div>
 
+</main>
 {% endblock %}

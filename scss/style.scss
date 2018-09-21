@@ -14,6 +14,12 @@ li
     
 }
 
+.flex-inline
+{
+    display: flex;
+    align-items: center;
+}
+
 .label.error,.label.success
 {
     font-size: 1em;
@@ -23,12 +29,18 @@ li
 {
     min-height: 500px;
     width: 100%;
-    background-image: url("/static/peytalaneApp/img/lune.jpg");
-    background-size: cover;
+    background-color:black;
     color: white;
-    background-position: center center;
     text-shadow: 1px 1px 1px black, -1px -1px black, 1px 0px black, 0px 1px black;
     font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-index img
+{
+    width: 300px;
 }
 
 .top-index .date
@@ -53,6 +65,11 @@ li
     margin-left: auto !important;
     margin-right: auto !important;
     width: 90% !important;
+}
+
+.small-container
+{
+    max-width: 600px;
 }
 
 .center
@@ -102,15 +119,41 @@ li
 
 .white-container.flat
 {
-    box-shadow: none;
+    box-shadow: 4px 5px 30px 0 rgba(67,57,72,.1);
     border:1px solid lightgray;
-    box-shadow: 0 0 0.2em rgba(200,200,200,0.1);
+    
 }
 
 label
 {
     margin: auto;
     max-width: 300px;
+}
+
+.icone
+{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.circle-medium
+{
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin: 30px;
+    position: relative;
+}
+
+.circle-medium .icone
+{
+    height: 90px;
+    width: 90px;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
 }
 
 .square-320
@@ -135,9 +178,6 @@ label
 .square-320 .icone
 {
     height: 257px; 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;   
 }
 
 .square-320 .title
@@ -146,7 +186,7 @@ label
     padding-top: 13px;
     border-top: 1px solid gray;
     font-weight: 800;
-    height: 51px;
+    height: 50px;
     background-color: white;
 }
 
