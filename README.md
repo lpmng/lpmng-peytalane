@@ -67,11 +67,11 @@ Compile sass
 
 TODO
 ----
-* Display real foods which is order on resume section : info is store in `have_foods` var in `peytalaneApp/function/decorator.py`
-* Do and /or verify all callback in `peytalaneApp/function/transaction.py`
-* In each callback, store a summary of the transaction to the bdd, there is a model `payment`
-* Do front-page for payment
-* Do payment request to lydia api on /api/request/do
-* When payment is valid:    
-    - Transform request.sessions["transactions"] array to array of transactions object
-    - For all transaction do transaction.payment
+* Display real foods and tournament amready order on resume section (check the decorator)
+* Do front-page for payment, do payment request to lydia api , clean transactions list
+* Update front for tournament reservation
+* Find a solution if a user had already reserved a tournament and want to change / (same for food ?)
+* Do verification on post request for food reservation
+* Add delete button on the aside with transactions list
+* Create an admin page with the summary of all reservations
+* Add some screenshots in the readme ;)
