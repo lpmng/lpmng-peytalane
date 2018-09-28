@@ -39,9 +39,9 @@ class Reservation_tournament(View):
         elif not 'tournoi' in request.POST:
             error = "Veuillez selectionner un tournoi"
         elif 'pseudo' in request.POST: # inscription with tournament
-            tournament = Tournament.objects.get(id = request.POST['tournoi'][0])
+            tournament = Tournament.objects.get(id = request.POST['tournoi'])
             self.inscription_lan(user,request)
-            success = self.add_tournament(tournament,request.POST['pseudo'][0],user,request)
+            success = self.add_tournament(tournament,request.POST['pseudo'],user,request)
         else:
             error = "Les données envoyés ne sont pas valides"
 
@@ -49,7 +49,7 @@ class Reservation_tournament(View):
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
 
-    #add transaction to book to the lan
+    #add transaction to book the lan
     def inscription_lan(self,user,request):
 
         if not user.lan:
@@ -71,6 +71,7 @@ class Reservation_tournament(View):
     #add transaction to book access to tournament
     def add_tournament(self,tournament,pseudo,user,request):
         self.clear_transaction(request,"tournament")
+        print(pseudo)
         transaction_obj =   {
                                 "price":0,
                                 "product":"inscription tournoi "+tournament.name,

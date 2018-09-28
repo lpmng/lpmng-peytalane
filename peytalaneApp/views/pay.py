@@ -19,12 +19,16 @@ class Pay(View):
         return render(request, self.html, locals())
 
 
-
+    @IsLogin
     def post(self,request,*args, **kwargs):
         transactions_list = request.session['transactions']
-        pay = Transaction(**request.session['transactions'][0])
+        for transaction in request.session['transactions']:
+            payment = Transaction(**transaction)
+            print("toto")
+            payment.payment()
+            del transaction
 
-
+        '''
         total = sum(transactions['price'] for transactions in transactions_list)
         if('telephone' in request.POST and request.POST['telephone'] != ''):
             truc=pay.lydia(total, request.POST['telephone'])
@@ -35,5 +39,6 @@ class Pay(View):
             request.session.modified = True
         else:
             error = "Entrez un numéro de telephone"
+        '''
 
         return render(request, self.html, locals())
