@@ -1,22 +1,32 @@
 {% extends 'peytalaneApp/reservation-layout.html' %}
 {% block reservation-content %}
-<h2>Catalogue des pizzas:</h2>
-<h3>Grande pizza : 10€</h3>
-<h3>Moyenne pizza : 7€</h3>
+
+<div class="flex-inline">
+	<h2 class="flexible">Catalogue des pizzas et kebab:</h2>
+</div>
+<div class="flex-inline info">
+	<div>Grande pizza : 10€,</div>
+	<div>Moyenne pizza : 7€,</div>
+	<div>Kebab : 5€</div>
+</div>
+<div class="center">
+	<input type="search" placeholder="Rechercher un aliment"/>
+</div>
 <div class="flex">
     <ul id="food-list">
 	{% for pizza in pizzas_list %}
-	<li>
-	    <div class="displayFood white-container flat">
-		<!-- <div class="imgProduit"><img src="/static/peytalaneApp/helium/pizza.svg"/></div> -->
-		<div class="product">{{ pizza.name }}</div>
-		<div class="ingredient">
-		    {% for ingredient in pizza.ingredients.values.all %}
-		    {{ ingredient.value }}
-		    {% endfor %}
+	<li class="white-container flat flex-inline">
+	    <!--<div class="displayFood white-container flat">-->
+		<div class="flexible">
+			<h3 class="product">{{ pizza.name }}</h3>
+			<div class="ingredient">
+				{% for ingredient in pizza.ingredients.values.all %}
+					{{ ingredient.value }},
+				{% endfor %}
+			</div>
 		</div>
 		<label for="optionFood{{ pizza.name}}" class="button">Commander</label>
-	    </div>
+	    
 	</li>
 	<!-- Modal for option pizza -->
 	<form action="/reservation/food/" method="POST" class="modal">

@@ -4,27 +4,82 @@
         <section id="reservation-content">
             <header class="container" id="reservation-header">
                 <h2>Résumé:</h2>
-                <ul>
-                    {% if lan_is_reserved %}
-                    <li class="white-container flat">Lan payé !</li>
-                    {% else %}
-                    <li class="white-container flat">Lan non payé !</li>
-                    {% endif %}
-                    {% if have_foods %}
+                <ul id="resume">
+                    <!-- mettre un web component quand ce sera supporté par tous les navigateurs du monde (plutot que de faire un copié collé)-->
+                    <a href="/toto">
+                    <li class="flex-inline resume-line white-container  
+                        {% if lan_is_reserved %}
+                            success
+                        {% else %}
+                            error
+                        {% endif %}">
+                        <div class="center">
+                            <div class="circle-small white-container orange">
+                                <div class="icone" style="background-image:url('/static/peytalaneApp/helium/compass.svg')"></div>
+                            </div>
+                        </div>
+                        <div class="flexible">
+                            <h3>LAN</h3>
+                            {% if lan_is_reserved %}
+                                <div>Lan payé !</div>
+                            {% else %}
+                                <div>Lan non payé !</div>
+                            {% endif %}
+                        </div>
+                    </li>
+                    </a>
+                    <a href="/reservation/tournament">
+                    <li class="flex-inline resume-line white-container error">
+                        <div class="center">
+                            <div class="circle-small white-container flat blue">
+                                <div class="icone" style="background-image:url('/static/peytalaneApp/helium/mouse.svg')"></div>
+                            </div>
+                        </div>
+                        <div class="flexible">
+                            <h3>Tournoi</h3>
+                            <div>Inscrit sur aucun tournoi</div>
+                        </div>
+                    </li>
+                    </a>
+                    <a href="/reservation/food">
+                    <li class="flex-inline resume-line white-container 
+                        {% if have_foods %}
+                            success
+                        {% else %}
+                            error
+                        {% endif %}">
+                        <div class="center">
+                            <div class="circle-small white-container green">
+                                <div class="icone" style="background-image:url('/static/peytalaneApp/helium/pizza.svg')"></div>
+                            </div>
+                        </div>
+                        <div class="flexible">
+                            <h3>Nourriture</h3>
+                            {% if have_foods %}
 
-                        <li class="white-container flat">
+                                <div class="flexible">
 
-                                <ul id="food-reservation-resume">
+                                    <ul id="food-reservation-resume">
                                         {% for food in have_foods %}
-                                    <li>{{food}}</li>
-                                    {% endfor %}
-                                </ul>
-
-                        </li>
-                    {% else %}
-                    <li class="white-container flat">Pas de repas</li>
-                    {% endif %}
+                                            <li>{{food}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="flexible">Pas de repas</div>
+                            {% endif %}
+                        </div>
+                    </li>
+                    </a>
                 </ul>
+                
+
+
+
+
+
+
+                
             </header>
             <section class="container">
                 {% block reservation-content %}
@@ -51,19 +106,39 @@
         </aside>
     </div>
     <style>
-        main
-        {
-            /*background-image:linear-gradient(60deg, #98b5ff, #a4fef5);*/
-            background-color: rgb(250,250,250);
-            /*
-            background-image:linear-gradient(60deg, #7e96d4, #89d4cc);*/
-
-        }
 
         #food-reservation-resume
         {
             list-style-type:circle !important;
             font-size: 1em !important;
+        }
+
+        #reservation-content a > .white-container:hover
+        {
+            background-color:rgba(50,50,50,0.1);
+        }
+
+        #reservation-content a > .white-container
+        {
+            margin-bottom: 15px;
+        }
+        #reservation-content a
+        {
+            color:black;
+        }
+
+        body
+        {
+            background-image: url("/static/peytalaneApp/img/background-flou.jpg");
+            background-size: cover;
+            background-position: center center;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        main
+        {
+            background-color: rgba(255, 255, 255, 0.90)
         }
     </style>
 {% endblock %}
