@@ -43,6 +43,7 @@ class Transaction():
     def callback_lan(self,args):
         user = User.objects.get(username = args["user"])
         user.lan = True
+        user.save()
         # TODO rajouter une session dans lpmng
         self.save_transaction("lan",user)
 
