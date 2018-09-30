@@ -13,7 +13,7 @@ class Reservation(View):
         Renvoie la page d'Inscription au chargement de la page
     """
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
         print(*args)
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())

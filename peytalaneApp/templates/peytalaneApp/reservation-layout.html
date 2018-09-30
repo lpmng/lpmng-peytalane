@@ -6,7 +6,7 @@
                 <h2>Résumé:</h2>
                 <ul id="resume">
                     <!-- mettre un web component quand ce sera supporté par tous les navigateurs du monde (plutot que de faire un copié collé)-->
-                    <a href="/toto">
+                    <a href="/reservation/tournament">
                     <li class="flex-inline resume-line white-container  
                         {% if lan_is_reserved %}
                             success
@@ -14,7 +14,7 @@
                             error
                         {% endif %}">
                         <div class="center">
-                            <div class="circle-small white-container orange">
+                            <div class="circle small white-container orange">
                                 <div class="icone" style="background-image:url('/static/peytalaneApp/helium/compass.svg')"></div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                     <a href="/reservation/tournament">
                     <li class="flex-inline resume-line white-container error">
                         <div class="center">
-                            <div class="circle-small white-container flat blue">
+                            <div class="circle small white-container flat blue">
                                 <div class="icone" style="background-image:url('/static/peytalaneApp/helium/mouse.svg')"></div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             error
                         {% endif %}">
                         <div class="center">
-                            <div class="circle-small white-container green">
+                            <div class="circle small white-container green">
                                 <div class="icone" style="background-image:url('/static/peytalaneApp/helium/pizza.svg')"></div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
 
                                     <ul id="food-reservation-resume">
                                         {% for food in have_foods %}
-                                            <li>{{food}}</li>
+                                            <li>{{food.product}}</li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -92,8 +92,9 @@
             <h2>Transaction en cours:</h2>
             <ul id="reservation-list">
                 {% for transaction in transactions_list %}
-                    <li class="white-container flat">
-                        <div class="product">{{ transaction.product }}</div>
+                    <li class="white-container flat flex-inline">
+                        <a href="" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></a>
+                        <div class="product flexible">{{ transaction.product }}</div>
                         <div class="price">{{ transaction.price }} € </div>
                     </li>
                 {% endfor %}
@@ -118,6 +119,11 @@
             background-color:rgba(50,50,50,0.1);
         }
 
+        #food-reservation-resume li
+        {
+            margin: 0 20px;
+        }
+
         #reservation-content a > .white-container
         {
             margin-bottom: 15px;
@@ -126,7 +132,7 @@
         {
             color:black;
         }
-
+        
         body
         {
             background-image: url("/static/peytalaneApp/img/background-flou.jpg");

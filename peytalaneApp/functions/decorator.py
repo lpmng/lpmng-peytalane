@@ -10,14 +10,17 @@ def IsLogin(function):
             
             #it's ugly but it permits to bypass *args functionment
             if user.lan:
+                print("plop")
                 lan_is_reserved = 1
             else:
                 lan_is_reserved = 0
             
-            # TODO : change it by real data
-            have_foods = [] #[elem.food for elem in user.Payment_set.all()]
             
-            return function(self,request,lan_is_reserved,have_foods, *args, **kwargs)
+            # TODO : change it by real data
+            have_foods = user.payment_set.filter(type_product = "food") #[elem.food for elem in user.Payment_set.all()]
+            have_tournament = user.payment_set.filter(type_product = "tournament") #[elem.food for elem in user.Payment_set.all()]
+
+            return function(self,request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs)
         else:
             return HttpResponseRedirect(reverse('login'))
     wrap.__doc__ = function.__doc__
