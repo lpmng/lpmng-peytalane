@@ -1,0 +1,50 @@
+{% extends 'peytalaneApp/layout.html' %}
+{% block content %}
+<script type="text/javascript" language="javascript" src="/static/peytalaneApp/HTML-Table-Filter/TableFilter/tablefilter.js"></script>  
+<div class="top-container">
+<h2 class="center">Liste des payments effectués</h2>
+
+<div class="flex-inline center">
+    <table width="600" cellspacing="0" cellpadding="0" id="table-admin">
+        <thead>
+            <tr>
+                <th>Type_product</th>
+                <th>Product</th>
+                <th>User</th>
+                <th>Price</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payment_list_object%}
+        <tr>
+        <td>{{ payment.type_product }}</td>
+        <td>{{ payment.product }}</td>
+        <td>{{ payment.user.username }}</td>
+        <td>{{ payment.price }}</td>
+        <td>plop</td>
+        </tr>
+            {% endfor %}
+        
+    </tbody>
+    </table>
+</div>
+</div>
+<script language="javascript" type="text/javascript">
+    var tfConfig = { 
+        base_path: '/static/peytalaneApp/HTML-Table-Filter/TableFilter/',
+        sort: 'true',
+        extensions: {
+            name:['ColumnsResizer'],
+            src:['/static/peytalaneApp/HTML-Table-Filter/TableFilter/TFExt_ColsResizer/TFExt_ColsResizer.js'],
+            description:['Columns Resizing'],
+            initialize:[function(o){o.SetColsResizer();}]
+        },
+        col_resizer_all_cells: true,
+        filters_row_index:1,
+        col_width: ["150px","100px","100px","70px","100px"],
+    }
+    var tf = setFilterGrid("table-admin",tfConfig);  
+</script> 
+{% endblock %}
+

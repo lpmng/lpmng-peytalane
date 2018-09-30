@@ -6,6 +6,7 @@ from peytalaneApp.views.login import Login
 from peytalaneApp.views.reservation import Reservation
 from peytalaneApp.views.reservation_food import Reservation_food
 from peytalaneApp.views.reservation_tournament import Reservation_tournament
+from peytalaneApp.views.reservation_admin import Reservation_admin
 from django.contrib.auth.views import logout
 
 
@@ -18,5 +19,7 @@ urlpatterns = [
     url(r'^reservation/food/$', Reservation_food.as_view(), name='reservation-food'),
     url(r'^reservation/tournament/$', Reservation_tournament.as_view(), name='reservation_tournament'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
-    url(r'^pay/$', Pay.as_view(), name='pay')
+    url(r'^pay/$', Pay.as_view(), name='pay'),
+    url(r'^reservation/admin', Reservation_admin.as_view(), name='pay')
+
 ]
