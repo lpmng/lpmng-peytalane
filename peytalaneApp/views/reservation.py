@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.functions.decorator import IsLogin
 from peytalaneApp.models_dir.food import *
+from peytalaneApp.functions.transaction import Transaction
+
 
 #pages après le login
 class Reservation(View):
@@ -17,4 +19,14 @@ class Reservation(View):
         print(*args)
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
+    
+    @IsLogin
+    def delete(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
+        if "id" in request.GET:
+            Transaction.delete_transaction(request,request.GET['id'])
+            return HttpResponse()
+        return HttpResponse('Bad request', status=400)
+
+
+
  

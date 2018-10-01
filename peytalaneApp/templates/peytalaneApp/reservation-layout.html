@@ -72,14 +72,7 @@
                     </li>
                     </a>
                 </ul>
-                
-
-
-
-
-
-
-                
+       
             </header>
             <section class="container">
                 {% block reservation-content %}
@@ -91,9 +84,9 @@
             <div>
             <h2>Transaction en cours:</h2>
             <ul id="reservation-list">
-                {% for transaction in transactions_list %}
+                {% for key, transaction in transactions_list.items %}
                     <li class="white-container flat flex-inline">
-                        <a href="" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></a>
+                        <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
                         <div class="product flexible">{{ transaction.product }}</div>
                         <div class="price">{{ transaction.price }} € </div>
                     </li>
@@ -106,6 +99,8 @@
             </div>
         </aside>
     </div>
+    
+    <script src="/static/peytalaneApp/main.js"></script>
     <style>
 
         #food-reservation-resume

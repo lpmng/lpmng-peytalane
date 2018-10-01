@@ -4,6 +4,17 @@
 <div class="flex-inline">
 	<h2 class="flexible">Catalogue des pizzas et kebab:</h2>
 </div>
+{%if error%}
+<div class="label error">
+    {{ error }}
+</div>
+{%endif%}
+
+{%if success%}
+<div class="label success">
+    {{ success }}
+</div>
+{%endif%}
 <div class="flex-inline info">
 	<div>Grande pizza : 10€,</div>
 	<div>Moyenne pizza : 7€,</div>

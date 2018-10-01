@@ -67,11 +67,12 @@ Compile sass
 
 TODO
 ----
-* Display real foods and tournament amready order on resume section (check the decorator)
+* Display real foods and tournament already order on resume section (check the decorator)
 * Do front-page for payment, do payment request to lydia api , clean transactions list
 * Update front for tournament reservation
 * Find a solution if a user had already reserved a tournament and want to change / (same for food ?)
-* Do verification on post request for food reservation
-* Add delete button on the aside with transactions list
-* Create an admin page with the summary of all reservations
+* Create an admin page with the summary of all reservations ~done
+* Update the style to be reponsive
+* Do the search for foods
+* Add a page with the summary of all user's transactions
 * Add some screenshots in the readme ;)

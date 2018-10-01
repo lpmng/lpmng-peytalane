@@ -4,7 +4,7 @@ from peytalaneApp.models_dir.food import *
 from peytalaneApp.models_dir.payment import *
 import requests
 import json
-
+import pdb
 import requests
 
 class Transaction():
@@ -14,6 +14,40 @@ class Transaction():
         self.product = product
         self.action_payment = action_payment
         self.args = args
+
+
+    @staticmethod
+    def new_transaction(request,price,product,action_payment,args):
+        if not "transactions_max_id" in request.session:
+            request.session["transactions_max_id"] = 0
+            request.session["transactions"] = dict()
+            request.session.modified = True
+        
+        transaction = {
+            "price":price,
+            "product":product,
+            "action_payment":action_payment,
+            "args":args
+        }
+        request.session["transactions"][request.session["transactions_max_id"] + 1] = transaction
+        request.session["transactions_max_id"] = request.session["transactions_max_id"]+1
+        request.session.modified = True
+
+    @staticmethod
+    def clean_transaction(request,action_payment):
+        for key in request.session["transactions"].keys():
+            transaction = request.session["transactions"][key]
+            #pdb.set_trace()
+            
+            if transaction["action_payment"] == action_payment:
+                request.session["transactions"].pop(key)
+                request.session.modified = True
+
+
+    @staticmethod
+    def delete_transaction(request,id):
+        request.session["transactions"].pop(id)
+        request.session.modified = True
 
 
     def payment(self):

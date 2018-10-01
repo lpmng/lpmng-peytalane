@@ -8,6 +8,7 @@ from peytalaneApp.models_dir.food import ValueOption
 from peytalaneApp.models_dir.user import User
 from peytalaneApp.functions.decorator import IsLogin
 
+import pdb
 
 # pages après sélection de l'option choix nourriture
 
@@ -26,43 +27,48 @@ class Reservation_food(View):
 
     @IsLogin
     def post(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
-        #reason = CsrfViewMiddleware().process_view(request, None, (), {})
-        transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
-        #print(reason)
-        #if not reason:
         user = User.objects.get(username=request.session['username'])
         
-        print(request.POST)
+        if("pizzaId" in request.POST and "pizzaName" in request.POST):
 
-        selected_pizza = Food.objects.get(id = request.POST["pizzaId"])
+            selected_pizza = Food.objects.get(id = request.POST["pizzaId"])
+            needed_options = selected_pizza.options.all()
+
+            for needed_option in needed_options:
+                if not needed_option.name in request.POST:
+                    error = "reservation refusée"
+                    return render(request, self.RENDER_HTML, locals())
+            
+            options = request.POST.copy()
+            del options['csrfmiddlewaretoken']
+            del options['pizzaId']
+            del options['pizzaName']
+
+            price = selected_pizza.price
+
+            args_transaction = dict()
+            args_transaction["id_food"] = request.POST["pizzaId"]
+            args_transaction["options"] = options.copy()
+            args_transaction["user"] = user.username
+
+            product_name = request.POST["pizzaName"]
+
+            for options_key in options.keys():
+                selected_value = ValueOption.objects.get(id = options[options_key])
+                product_name = product_name + "<br/>" + options_key + ":" + selected_value.value
+                price = price + selected_value.price
+            
+            Transaction.new_transaction(
+                request,
+                price,
+                product_name,
+                "food",
+                args_transaction
+            )
+            success = "Nourriture reservé"
+        else:
+            error = "Réservation refusée"
         
-        options = request.POST.copy()
-        del options['csrfmiddlewaretoken']
-        del options['pizzaId']
-        del options['pizzaName']
-
-        price = selected_pizza.price
-
-        args_transaction = dict()
-        args_transaction["id_food"] = request.POST["pizzaId"]
-        args_transaction["options"] = options.copy()
-        args_transaction["user"] = user.username
-
-        product_name = request.POST["pizzaName"]
-
-        for options_key in options.keys():
-            selected_value = ValueOption.objects.get(id = options[options_key])
-            product_name = product_name + "<br/>" + options_key + ":" + selected_value.value
-            price = price + selected_value.price
-        
-        transaction_obj = {
-            "price": price,
-            "product": product_name,
-            "action_payment": "food",
-            "args": args_transaction
-        }
-        
-        transactions_list.append(transaction_obj)
-        request.session['transactions'] = transactions_list
+        transactions_list = request.session['transactions']
         return render(request, self.RENDER_HTML, locals())

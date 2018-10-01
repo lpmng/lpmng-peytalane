@@ -53,16 +53,14 @@ class Reservation_tournament(View):
     def inscription_lan(self,user,request):
 
         if not user.lan:
-            self.clear_transaction(request,"lan")
-            transaction_obj = {
-                                "price":4,
-                                "product":"Réservation lan",
-                                "action_payment":"lan",
-                                "args":{"user":user.username,}
-                              }
-            transactions_list = request.session['transactions']
-            transactions_list.append(transaction_obj)
-            request.session['transactions'] = transactions_list
+            Transaction.clean_transaction(request,"lan")           
+            Transaction.new_transaction(
+                request,
+                4,
+                "Réservation lan",
+                "lan",
+                {"user":user.username,}
+            )
             return True
         else:
             return False
@@ -70,17 +68,14 @@ class Reservation_tournament(View):
 
     #add transaction to book access to tournament
     def add_tournament(self,tournament,pseudo,user,request):
-        self.clear_transaction(request,"tournament")
-        print(pseudo)
-        transaction_obj =   {
-                                "price":0,
-                                "product":"inscription tournoi "+tournament.name,
-                                "action_payment":"tournament",
-                                "args":{"user":user.username,"pseudo":pseudo,"id_tournament":tournament.id}
-                            }
-        transactions_list = request.session['transactions']
-        transactions_list.append(transaction_obj)
-        request.session['transactions'] = transactions_list
+        Transaction.clean_transaction(request,"tournament")           
+        Transaction.new_transaction(
+            request,
+            0,
+            "inscription tournoi "+tournament.name,
+            "tournament",
+            {"user":user.username,"pseudo":pseudo,"id_tournament":tournament.id}
+        )
         return "Réservation ajoutée dans le panier"
 
     # delete all transaction where action_payment = action_payment arg

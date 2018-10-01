@@ -31,7 +31,11 @@ class Login(View):
                 # we save connected user 
                 request.session['username'] = username
                 request.session['token'] = user['token']
-                request.session['transactions'] = []
+                info_user = core.requete_core_get("/users/"+username+"/isadmin",user['token'])
+                print(info_user)
+                request.session['transactions'] = dict()
+                request.session["transactions_max_id"] = 0
+
 
                 # if user doesn't exist in bdd we create it
                 obj, created  = User.objects.get_or_create(username=username)

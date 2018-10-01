@@ -17,17 +17,18 @@
 {%endif%}
 
 <div class="facture white-container">
-  {% for transaction in transactions_list %}
-      <li class="white-container flat">
+  {% for key, transaction in transactions_list.items %}
+    <li class="white-container flat">
           <p class="product">{{ transaction.product }}</p><p class="price">{{ transaction.price }} € </p>
 
       </li>
   {% endfor %}
   <div class="total">Total : {{total}} €</div>
+  Numéro de téléphone <input id="phone" type="tel" name="telephone">
+  <input type="submit" value="Payer">
 </div>
 
-Numéro de téléphone <input id="phone" type="tel" name="telephone">
-<input type="submit" value="OK">
+
 </form>
 
 
