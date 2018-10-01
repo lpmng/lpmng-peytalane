@@ -1,0 +1,30 @@
+$table-font-size: 18px;
+
+main table
+{
+    text-align: left;
+    background-color: white;
+    font-family: 'Arimo', sans-serif;
+    font-size: $table-font-size;
+    border:1px solid grey;
+}
+
+
+main table td,main table th
+{
+    padding: 20px !important;
+    font-family: 'Arimo', sans-serif !important;
+    font-size: $table-font-size;
+}
+
+main table td input.flt
+{
+    background-color: #fff;
+    font-size: inherit;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    height: 40px;
+    display: block;
+    margin: 10px;
+    width: calc(100% - 30px);
+}
