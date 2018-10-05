@@ -17,11 +17,11 @@
 {%endif%}
 
 
-<div class="flex">
+<div class="flex center">
     {% for t in tournaments_list %}
     <input id="tournament{{t.id}}" type="radio" name="tournoi" class="tournoi-check" value="{{t.id}}">
-    <label for="tournament{{t.id}}" class="white-container flat square-320 center">
-        <div class="icone" style="background-image:url('/{{t.img.url}}')">
+    <label for="tournament{{t.id}}" class="square-320 center">
+        <div class="icone" style="background-image:url('{{t.img_src}}')">
         </div>
         <div class="title">{{t.name}}</div>
     </label>
@@ -55,10 +55,6 @@
 </div>
 </form>
 <style>
-    .tournoi-check:checked + label
-    {
-        border:1px solid green;
-
-    }
+    
 </style>
 {%endblock%}

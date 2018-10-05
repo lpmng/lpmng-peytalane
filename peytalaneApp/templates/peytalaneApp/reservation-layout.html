@@ -29,7 +29,12 @@
                     </li>
                     </a>
                     <a href="/reservation/tournament">
-                    <li class="flex-inline resume-line white-container error">
+                    <li class="flex-inline resume-line white-container 
+                        {% if have_tournament %}
+                            success
+                        {% else %}
+                            error
+                        {% endif %}">
                         <div class="center">
                             <div class="circle small white-container flat blue">
                                 <div class="icone" style="background-image:url('/static/peytalaneApp/helium/mouse.svg')"></div>
@@ -37,7 +42,19 @@
                         </div>
                         <div class="flexible">
                             <h3>Tournoi</h3>
-                            <div>Inscrit sur aucun tournoi</div>
+                            {% if have_tournament %}
+
+                                <div class="flexible">
+
+                                    <ul id="food-reservation-resume">
+                                        {% for tournament in have_tournament %}
+                                            <li>{{tournament.product}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="flexible">Inscrit sur aucun tournoi</div>
+                            {% endif %}
                         </div>
                     </li>
                     </a>
@@ -143,10 +160,11 @@
         body
         {
             background-image: url("/static/peytalaneApp/img/background-flou.jpg");
-            background-size: cover;
-            background-position: center center;
             height: 100vh;
             overflow-y: scroll;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         main

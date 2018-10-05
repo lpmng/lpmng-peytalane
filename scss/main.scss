@@ -52,6 +52,10 @@ body
 {
     max-width: none !important;
 }
+
+$flat_shadow: 4px 5px 30px 0 rgba(67,57,72,.1);
+$shadow: 0 0 0.2em rgba(17,17,17,0.2);
+
 @import 'style.scss';
 @import 'reservation.scss';
 @import 'food.scss'; 

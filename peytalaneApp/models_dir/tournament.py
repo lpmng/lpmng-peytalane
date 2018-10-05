@@ -14,3 +14,7 @@ class Tournament(models.Model):
     number_participants = models.IntegerField()
     img = models.FileField(upload_to='peytalaneApp/static/')
     price = models.IntegerField()
+
+    @property
+    def img_src(self):
+        return self.img.url.replace("peytalaneApp","")

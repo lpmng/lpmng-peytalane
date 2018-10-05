@@ -31,7 +31,9 @@ class Reservation_tournament(View):
     def post(self,request,lan_is_reserved,have_foods,have_tournament,*args, **kwargs):
         user = User.objects.get(username = request.session['username'])
         # if inscription without tournament...
-        if('no-tournament' in request.POST):
+        if(have_tournament):
+            error = "Vous êtes déjà inscrit sur un tournoi"
+        elif('no-tournament' in request.POST):
             if self.inscription_lan(user,request):
                 success = "Inscription ajoutée au panier"
             else:

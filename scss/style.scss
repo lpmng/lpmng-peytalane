@@ -1,3 +1,5 @@
+
+
 main
 {
     /*background-image:linear-gradient(60deg, #98b5ff, #a4fef5);*/
@@ -192,7 +194,7 @@ html .green
 .white-container
 {
     background-color: rgba(255,255,255,0.95);
-    box-shadow: 0 0 0.2em rgba(17,17,17,0.2);
+    box-shadow:$shadow;
     padding: 10px 3% 10px 3%;
 }
 
@@ -205,7 +207,7 @@ html .green
 
 .white-container.flat
 {
-    box-shadow: 4px 5px 30px 0 rgba(67,57,72,.1);
+    box-shadow: $flat_shadow;
     border:1px solid lightgray;
     
 }
@@ -295,13 +297,19 @@ label
 {
     width: 320px;
     height: 320px;
-    margin: auto;
     flex-grow: 0;
     margin-top: 20px;
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
     background-image:linear-gradient(60deg, #98b5ff, #a4fef5);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 20px;
+    box-shadow: $flat_shadow;
+    border:1px solid lightgray;
     
 }
 .square-320:hover
@@ -310,19 +318,28 @@ label
 }
 
 
+
 .square-320 .icone
 {
-    height: 257px; 
+    flex:1;
+    background-size: cover;
 }
 
 .square-320 .title
 {
     width: 100%;
-    padding-top: 13px;
+    padding-top: 10px;
     border-top: 1px solid gray;
     font-weight: 800;
-    height: 50px;
     background-color: white;
+    flex:0;
+    padding-bottom: 10px;
+}
+
+.tournoi-check:checked + label
+{
+    border:5px solid lightgreen;
+
 }
 
 @media screen and (max-width: 800px)
