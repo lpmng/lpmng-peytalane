@@ -9,15 +9,16 @@ import requests
 
 class Transaction():
 
-    def __init__(self,price,product,action_payment,args):
+    def __init__(self,price,product,action_payment,args,comment):
         self.price = price
         self.product = product
         self.action_payment = action_payment
         self.args = args
+        self.comment = comment
 
 
     @staticmethod
-    def new_transaction(request,price,product,action_payment,args):
+    def new_transaction(request,price,product,action_payment,args,comment=""):
         if not "transactions_max_id" in request.session:
             request.session["transactions_max_id"] = 0
             request.session["transactions"] = dict()
@@ -27,7 +28,8 @@ class Transaction():
             "price":price,
             "product":product,
             "action_payment":action_payment,
-            "args":args
+            "args":args,
+            "comment":comment
         }
         request.session["transactions"][request.session["transactions_max_id"] + 1] = transaction
         request.session["transactions_max_id"] = request.session["transactions_max_id"]+1
@@ -96,16 +98,17 @@ class Transaction():
         payment.type_product = self.action_payment
         payment.product = product
         payment.user = user
+        payment.comment = self.comment
         payment.save()
 
         for options_key in options.keys():
-            po = Payment_option()
-            po.name = options_key
-            po.value = ValueOption.objects.get(id = options[options_key]).value
-            #po.value = options[options_key]
-            po.save()
-            payment.options.add(po)
-            payment.save()
+            po = Payment_option.objects.get_or_create(name=options_key)
+            pv = Payment_option_value(
+                value = options[options_key][1],
+                option = po[0],
+                payment = payment
+            )
+            pv.save()
 
 
     def lydia(self, amount, recipient):

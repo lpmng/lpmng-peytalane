@@ -8,11 +8,11 @@ class ValueOption(models.Model):
     value = models.CharField(max_length=50) # EX: oui / non / grande / petite ...
     price = models.IntegerField()
     def __str__(self):
-        return str(self.value)
+        return str(self.value + ":" + str(self.price))
 
 
 class Option(models.Model):
-    name = models.CharField(max_length=50) # EX: taille / tomates ? / oignon ? ...
+    name = models.CharField(max_length=50, unique=True) # EX: taille / tomates ? / oignon ? ...
     values = models.ManyToManyField(ValueOption)
     def __str__(self):
         return str(self.name)

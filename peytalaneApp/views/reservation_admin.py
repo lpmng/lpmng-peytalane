@@ -21,5 +21,6 @@ class Reservation_admin(View):
     def get(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
         transactions_list = request.session['transactions']
         payment_list_object = Payment.objects.all()
+        list_options = Payment_option.objects.all()
         #payment_list = [ payment for payment in payment_list_object]
         return render(request, self.RENDER_HTML, locals())

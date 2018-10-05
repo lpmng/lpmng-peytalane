@@ -22,6 +22,7 @@ class Reservation_food(View):
     def get(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
         transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
+        #print(transaction_list)
         return render(request, self.RENDER_HTML, locals())
     
 
@@ -44,27 +45,32 @@ class Reservation_food(View):
             del options['csrfmiddlewaretoken']
             del options['pizzaId']
             del options['pizzaName']
+            del options['comment']
 
             price = selected_pizza.price
 
             args_transaction = dict()
             args_transaction["id_food"] = request.POST["pizzaId"]
-            args_transaction["options"] = options.copy()
+            args_transaction["options"] = dict()
             args_transaction["user"] = user.username
 
             product_name = request.POST["pizzaName"]
 
             for options_key in options.keys():
                 selected_value = ValueOption.objects.get(id = options[options_key])
-                product_name = product_name + "<br/>" + options_key + ":" + selected_value.value
                 price = price + selected_value.price
+                args_transaction["options"][options_key] = (options[options_key],selected_value.value)
             
+            if "comment" in request.POST:
+                comment = request.POST["comment"]
+            print(comment)
             Transaction.new_transaction(
                 request,
                 price,
                 product_name,
                 "food",
-                args_transaction
+                args_transaction,
+                comment
             )
             success = "Nourriture reservé"
         else:

@@ -28,6 +28,11 @@ html input[type="search"]
     margin: 10px;
 }
 
+.modal > input:checked ~ .overlay ~ *
+{
+    min-width: 400px;
+}
+
 h3
 {
     padding: 0;
@@ -190,6 +195,13 @@ html .green
     box-shadow: 0 0 0.2em rgba(17,17,17,0.2);
     padding: 10px 3% 10px 3%;
 }
+
+.white-container.small-padding
+{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 
 .white-container.flat
 {

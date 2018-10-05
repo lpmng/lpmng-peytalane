@@ -80,14 +80,26 @@
                 {% endblock %}
             </section>
         </section>
-        <aside id="reservation-resume" class="white-container">
+        <aside id="reservation-resume" class="white-container small-padding">
             <div>
             <h2>Transaction en cours:</h2>
             <ul id="reservation-list">
                 {% for key, transaction in transactions_list.items %}
                     <li class="white-container flat flex-inline">
                         <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
-                        <div class="product flexible">{{ transaction.product }}</div>
+                        <div class="product flexible">
+                            <h3>{{ transaction.product }}</h3>
+                            <ul>
+                                {% for option,value_option in transaction.args.options.items %}
+                                <li>{{option}} : {{value_option.1 }}</li>
+                                {% endfor %}
+                                {% if transaction.comment%}
+                                <div class="white-container">
+                                        {{transaction.comment}}
+                                </div>
+                                {%endif%}
+                            </ul>
+                        </div>
                         <div class="price">{{ transaction.price }} € </div>
                     </li>
                 {% endfor %}

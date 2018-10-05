@@ -24,6 +24,8 @@ admin.site.register(ValueOption, ValueOptionAdmin)
 admin.site.register(Option, OptionAdmin)
 admin.site.register(ValueIngredient, ValueIngredientAdmin)
 admin.site.register(Food, FoodAdmin)
+
+'''
 # -- -- -- -- -- --  Payment  -- -- -- -- -- -- --
 
 class PaymentAdmin(admin.ModelAdmin):
@@ -35,6 +37,7 @@ class OptionPaymentAdmin(admin.ModelAdmin):
 
 admin.site.register(Payment, PaymentAdmin)
 admin.site.register(Payment_option, OptionPaymentAdmin)
+'''
 
 # -- -- -- -- -- -- -- user -- -- -- -- -- -- -- --
 class UserAdmin(admin.ModelAdmin):

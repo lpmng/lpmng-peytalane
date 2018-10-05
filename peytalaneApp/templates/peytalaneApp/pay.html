@@ -18,10 +18,23 @@
 
 <div class="facture white-container">
   {% for key, transaction in transactions_list.items %}
-    <li class="white-container flat">
-          <p class="product">{{ transaction.product }}</p><p class="price">{{ transaction.price }} € </p>
-
-      </li>
+  <li class="white-container flat flex-inline">
+      <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
+      <div class="product flexible">
+          <h3>{{ transaction.product }}</h3>
+          <ul>
+              {% for option,value_option in transaction.args.options.items %}
+              <li>{{option}} : {{value_option.1 }}</li>
+              {% endfor %}
+              {% if transaction.comment%}
+              <div class="white-container">
+                      {{transaction.comment}}
+              </div>
+              {%endif%}
+          </ul>
+      </div>
+      <div class="price">{{ transaction.price }} € </div>
+  </li>
   {% endfor %}
   <div class="total">Total : {{total}} €</div>
   Numéro de téléphone <input id="phone" type="tel" name="telephone">
@@ -34,17 +47,32 @@
 
 
 <style>
-  li{
-    list-style-type: none;
-  }
   .facture{
     margin: auto;
     width: 50%;
   }
+
   .total{
     text-align: right;
     padding-right: 3px;
   }
+
+  #phone{
+    text-align: center;
+    width: 25%;
+    margin: auto;
+  }
+
+  .price
+  {
+    vertical-align: top;
+  }
+  /*
+  li{
+    list-style-type: none;
+  }
+  
+  
   .product{
     text-align:left;
 
@@ -57,6 +85,6 @@
     text-align: center;
     width: 25%;
     margin: auto;
-  }
+  }*/
 </style>
 {%endblock%}

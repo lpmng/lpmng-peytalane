@@ -1,5 +1,8 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
+
+{% load payment_tag %}
+
 <script type="text/javascript" language="javascript" src="/static/peytalaneApp/HTML-Table-Filter/TableFilter/tablefilter.js"></script>  
 <div class="top-container">
 <h2 class="center">Liste des payments effectués</h2>
@@ -12,17 +15,24 @@
                 <th>Product</th>
                 <th>User</th>
                 <th>Price</th>
-                <th>Options</th>
+                {% for option in list_options %}
+                <th>{{ option.name }}</th>
+                {% endfor %}
+                <th>Commentaire</th>
             </tr>
         </thead>
         <tbody>
             {% for payment in payment_list_object%}
         <tr>
-        <td>{{ payment.type_product }}</td>
-        <td>{{ payment.product }}</td>
-        <td>{{ payment.user.username }}</td>
-        <td>{{ payment.price }}</td>
-        <td>plop</td>
+            <td>{{ payment.type_product }}</td>
+            <td>{{ payment.product }}</td>
+            <td>{{ payment.user.username }}</td>
+            <td>{{ payment.price }}</td>
+                {% for option in list_options %}
+                    
+                <td> {{ payment|get_value_option:option }}</td>
+                {%endfor%}
+            <td>{{ payment.comment }}</td>
         </tr>
             {% endfor %}
         
@@ -42,7 +52,11 @@
         },
         col_resizer_all_cells: true,
         filters_row_index:1,
-        col_width: ["200px","200px","200px","200px","200px"],
+        col_width: ["200px","200px","200px","200px","200px"
+        {% for option_name in list_options %}
+                ,"200px"
+        {% endfor %}
+        ]
     }
     var tf = setFilterGrid("table-admin",tfConfig);  
 </script> 

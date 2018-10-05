@@ -54,7 +54,7 @@
 		<section class="content">
 		    {% for option in pizza.options.all %}
 		    <label>
-			{{ option.name }}
+			<h4>{{ option.name }}</h4>
 			<select name="{{ option.name }}">
 			    {% for choix in option.values.all %}
 			    <option value="{{ choix.id }}">
@@ -63,7 +63,11 @@
 			    {% endfor %}
 			</select>
 		    </label>
-		    {% endfor %}
+			{% endfor %}
+			<h4>Ajouter un commentaire:</h4>
+			<textarea name="comment">
+
+			</textarea>
 		</section>
 		<footer>
 		    <input type="submit" class="button" value="Commander" />
