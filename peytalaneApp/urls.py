@@ -22,10 +22,7 @@ urlpatterns = [
     url(r'^pay/$', Pay.as_view(), name='pay'),
     url(r'^reservation/admin/food', Food_admin.as_view(), name='food_admin'),
     url(r'^reservation/admin/user', User_admin.as_view(), name='user_admin'),
-
-    #url(r'^user/admin', User_admin.as_view(), name='user_admin'),
-    #url(r'^reservation/admin/user', User_admin.as_view(), name='user_admin'),
-    #url(r'^reservation/admin/user', User_admin.as_view(), name='user_admin'),
+    url(r'^reservation/admin/tournament', Tournament_admin.as_view(), name='tournament_admin'),
 
     #url(r'^reservation/food/search', Reservation_food_search, name='')
 ]

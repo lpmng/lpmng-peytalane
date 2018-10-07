@@ -1,0 +1,62 @@
+{% extends 'peytalaneApp/admin/layout.html' %}
+
+{% block admin-content %}
+{% load payment_tag %}
+
+<script type="text/javascript" language="javascript" src="/static/peytalaneApp/HTML-Table-Filter/TableFilter/tablefilter.js"></script>  
+<h2 class="center">Les tournois</h2>
+
+<div class="flex-inline center">
+{% for tournament in list_tournament %}
+   <div class="tournoi">
+        <h3>{{ tournament.name }}</h3>
+        <table width="300" cellspacing="0" cellpadding="0" id="table-{{tournament.name}}" class="white-container flat">
+                <thead>
+                    <tr>
+                        <th class="first">Utilisateur</th>
+                        <th>Pseudo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for p in tournament.participants.all %}
+                <tr>
+                    <td>{{ p.user.username }}</td>
+                    <td>{{ p.game_pseudo }}</td>
+                    
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+   
+   
+    </div>
+{% endfor %}
+</div>
+
+<script language="javascript" type="text/javascript">
+    var tfConfig = { 
+        base_path: '/static/peytalaneApp/HTML-Table-Filter/TableFilter/',
+        sort: 'true',
+        extensions: {
+            name:['ColumnsResizer'],
+            src:['/static/peytalaneApp/HTML-Table-Filter/TableFilter/TFExt_ColsResizer/TFExt_ColsResizer.js'],
+            description:['Columns Resizing'],
+            initialize:[function(o){o.SetColsResizer();}]
+        },
+        stylesheet:'plouf',
+        col_resizer_all_cells: true,
+        filters_row_index:1,
+        col_width: ["150px","150px"]
+    }
+
+    {% for tournament in list_tournament %}
+    try {
+        var tf = setFilterGrid("table-{{tournament.name}}",tfConfig);  
+    } catch (error) {
+        console.log("plouf")
+    }
+    {% endfor %}
+</script>
+
+{% endblock %}

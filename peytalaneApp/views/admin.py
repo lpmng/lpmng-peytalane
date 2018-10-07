@@ -7,6 +7,7 @@ from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.food import Food
 from peytalaneApp.models_dir.food import ValueOption
 from peytalaneApp.models_dir.user import User
+from peytalaneApp.models_dir.tournament import *
 from peytalaneApp.functions.decorator import IsLogin
 from peytalaneApp.models_dir.payment import Payment,Payment_option
 
@@ -54,6 +55,17 @@ class User_admin(View):
                 return HttpResponse()
 
         return HttpResponse('Bad request', status=400)
+
+class Tournament_admin(View):
+    """
+        Renvoi la page d'admin de la nourriture
+    """
+    RENDER_HTML = 'peytalaneApp/admin/tournament.html'
+    @IsLogin
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+        list_tournament = Tournament.objects.all()
+        menu_selected_element = "tournament"
+        return render(request, self.RENDER_HTML, locals())
 
 
 
