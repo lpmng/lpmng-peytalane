@@ -1,0 +1,61 @@
+$table-font-size: 18px;
+
+#admin-main
+{
+    height: 100%;
+    overflow-x: auto;
+}
+
+#admin-main table
+{
+    margin: auto;
+}
+
+#admin-main table td
+{
+    margin-bottom: 10px;
+}
+
+#admin-main table tr,#admin-main table td
+{
+    border-bottom: 1px solid lightgray;
+    background-color: white;
+    text-align: left;
+    /*box-shadow: $flat_shadow;*/
+}
+
+#admin-main table .fltrow td
+{
+    padding: 0;
+}
+
+#admin-main table thead th
+{
+    border-left: 1px solid lightgray;
+}
+
+#admin-main table thead th.first
+{
+    border: none;
+}
+
+#admin-main table td,main table th
+{
+    padding: 20px;
+    font-size: $table-font-size;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#admin-main table td input.flt
+{
+    background-color: #fff;
+    font-size: inherit;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    height: 40px;
+    display: block;
+    margin: 10px;
+    width: calc(100% - 30px);
+}

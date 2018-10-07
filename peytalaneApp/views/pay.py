@@ -13,7 +13,7 @@ class Pay(View):
 
 
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,is_admin, *args, **kwargs):
         transactions_list = request.session['transactions']
         tournaments_list = Tournament.objects.all()
         total = sum(transactions_list[key]['price'] for key in transactions_list)

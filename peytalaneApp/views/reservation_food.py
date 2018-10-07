@@ -19,7 +19,7 @@ class Reservation_food(View):
     """
     RENDER_HTML = 'peytalaneApp/reservation-food.html'
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
         transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
         #print(transaction_list)
@@ -27,7 +27,7 @@ class Reservation_food(View):
     
 
     @IsLogin
-    def post(self, request,lan_is_reserved,have_foods,have_tournament, *args, **kwargs):
+    def post(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
         pizzas_list = Food.objects.all()
         user = User.objects.get(username=request.session['username'])
         

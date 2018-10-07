@@ -31,8 +31,8 @@ class Login(View):
                 # we save connected user 
                 request.session['username'] = username
                 request.session['token'] = user['token']
-                info_user = core.requete_core_get("/users/"+username+"/isadmin",user['token'])
-                print(info_user)
+                #info_user = core.requete_core_get("/users/"+username+"/isadmin",user['token'])
+                #print(info_user)
                 request.session['transactions'] = dict()
                 request.session["transactions_max_id"] = 0
 

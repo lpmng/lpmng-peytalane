@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="/static/peytalaneApp/style.min.css" />
+        <script src="/static/peytalaneApp/main.js"></script>
+        <link rel="stylesheet" href="/static/peytalaneApp/checkbox.css" />
     	<meta name="viewport" content="width=device-width,initial-scale=1">
         <title></title>
     </head>
@@ -18,6 +20,9 @@
         
             <div class="menu">
                 {% if 'username' in request.session %}
+                    {% if is_admin %}
+                        <a href="/reservation/admin/food">Page d'administration</a>
+                    {% endif %}
                     <a href="/reservation/">Réserver la lan</a>
                     <a href="/logout/">Déconnexion</a>
                 {% else %}

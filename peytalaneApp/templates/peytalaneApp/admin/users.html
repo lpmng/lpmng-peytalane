@@ -1,0 +1,73 @@
+{% extends 'peytalaneApp/admin/layout.html' %}
+
+{% block admin-content %}
+{% load payment_tag %}
+
+<script type="text/javascript" language="javascript" src="/static/peytalaneApp/HTML-Table-Filter/TableFilter/tablefilter.js"></script>  
+<h2 class="center">Liste des Utilisateurs</h2>
+
+<div class="flex-inline center">
+    <table width="300" cellspacing="0" cellpadding="0" id="table-admin" class="white-container flat">
+        <thead>
+            <tr>
+                <th class="first">Utilisateur</th>
+                <th>Lan</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in list_user%}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>
+                <div class="checkboxFour">
+                    <input type="checkbox" class="permission" value="1"
+                        id="{{user.username}}_lan"
+                        {% if user.lan %}
+                            checked
+                        {% endif %}
+                        />
+                    <label for="{{user.username}}_lan"></label>
+                </div>
+            </td>
+            <td>
+                <div class="checkboxFour">
+                    <input type="checkbox" class="permission" value="1"
+                        id="{{user.username}}_admin"
+                        {% if user.admin %}
+                            checked
+                        {% endif %}
+                        onchange="set_user_admin(this,'{{user.username}}')"
+                        />
+                    <label for="{{user.username}}_admin"></label>
+                </div>
+            </td>
+        </tr>
+            {% endfor %}
+        
+    </tbody>
+    </table>
+</div>
+</div>
+<script language="javascript" type="text/javascript">
+    var tfConfig = { 
+        base_path: '/static/peytalaneApp/HTML-Table-Filter/TableFilter/',
+        sort: 'true',
+        extensions: {
+            name:['ColumnsResizer'],
+            src:['/static/peytalaneApp/HTML-Table-Filter/TableFilter/TFExt_ColsResizer/TFExt_ColsResizer.js'],
+            description:['Columns Resizing'],
+            initialize:[function(o){o.SetColsResizer();}]
+        },
+        stylesheet:'plouf',
+        col_resizer_all_cells: true,
+        filters_row_index:1,
+        col_width: ["150px","120px","120px"]
+    }
+    try {
+        var tf = setFilterGrid("table-admin",tfConfig);  
+    } catch (error) {
+        console.log("plouf")
+    }
+</script>
+{% endblock %}

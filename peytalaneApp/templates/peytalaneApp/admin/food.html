@@ -1,20 +1,18 @@
-{% extends 'peytalaneApp/layout.html' %}
-{% block content %}
+{% extends 'peytalaneApp/admin/layout.html' %}
 
+{% block admin-content %}
 {% load payment_tag %}
 
 <script type="text/javascript" language="javascript" src="/static/peytalaneApp/HTML-Table-Filter/TableFilter/tablefilter.js"></script>  
-<div class="top-container">
-<h2 class="center">Liste des payments effectués</h2>
+<h2 class="center">Liste des achats effectués</h2>
 
-<div class="flex-inline center">
-    <table width="600" cellspacing="0" cellpadding="0" id="table-admin">
+<div class="center">
+    <table width="600px" cellspacing="0" cellpadding="0" id="table-admin" class="white-container flat">
         <thead>
-            <tr>
-                <th>Type_product</th>
-                <th>Product</th>
-                <th>User</th>
-                <th>Price</th>
+            <tr class="title">
+                <th class="first">Produit</th>
+                <th>Utilisateur</th>
+                <th>Prix</th>
                 {% for option in list_options %}
                 <th>{{ option.name }}</th>
                 {% endfor %}
@@ -22,9 +20,8 @@
             </tr>
         </thead>
         <tbody>
-            {% for payment in payment_list_object%}
+            {% for payment in list_food%}
         <tr>
-            <td>{{ payment.type_product }}</td>
             <td>{{ payment.product }}</td>
             <td>{{ payment.user.username }}</td>
             <td>{{ payment.price }}</td>
@@ -50,15 +47,15 @@
             description:['Columns Resizing'],
             initialize:[function(o){o.SetColsResizer();}]
         },
+        stylesheet:'plouf',
         col_resizer_all_cells: true,
         filters_row_index:1,
-        col_width: ["200px","200px","200px","200px","200px"
+        col_width: ["170px","170px","100px","170px"
         {% for option_name in list_options %}
-                ,"200px"
+                ,"170px"
         {% endfor %}
         ]
     }
     var tf = setFilterGrid("table-admin",tfConfig);  
-</script> 
+</script>
 {% endblock %}
-

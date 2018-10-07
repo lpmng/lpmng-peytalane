@@ -1,0 +1,49 @@
+{% extends 'peytalaneApp/layout.html' %}
+{% block content %}
+<div id="admin-main">
+<div class="top-container">
+    <div class="center tabs-menu">
+        <a class="
+        {% if menu_selected_element == 'food' %}
+            selected
+        {% endif %}
+        " href="/reservation/admin/food.html">Nourriture</a>
+        <a class="
+        {% if menu_selected_element == 'tournament' %}
+            selected
+        {% endif %}
+        " href="/reservation/admin/food.html">Tournoi</a>
+        <a class="
+        {% if menu_selected_element == 'user' %}
+            selected
+        {% endif %}
+        " href="/reservation/admin/user.html">Users</a>
+    </div>
+{% block admin-content %}
+  
+{% endblock %}
+</div>
+</div>
+<style>
+    .tabs-menu > a
+    {
+        padding: 10px;
+        display: inline-block;
+        min-width: 200px;
+        color:grey;
+    }
+
+    .tabs-menu > a.selected
+    {
+        color: black;
+        border-bottom: 2px solid black;
+    }
+
+    .tabs-menu > a:hover
+    {
+        color:black;
+    }
+</style>
+
+
+{% endblock %}

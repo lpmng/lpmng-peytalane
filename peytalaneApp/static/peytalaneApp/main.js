@@ -18,6 +18,32 @@ function delete_transaction(element,id)
     xhr.send()
 }
 
+function set_user_admin(element,username)
+{
+    console.log(element)
+    if(element.checked)
+        admin = 1
+    else
+        admin = 0
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === 4)
+        {
+            if (xhr.status === 200) 
+            {
+                console.log("put admin ok")
+            }
+
+        }
+    }
+    xhr.open('PUT', '/reservation/admin/user?username=' + encodeURIComponent(username) + "&admin="+admin, true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    xhr.setRequestHeader('X-CSRFToken',getCookie("csrftoken"))
+    xhr.send()
+}
+
 function getCookie(c_name)
 {
     if (document.cookie.length > 0)
@@ -32,4 +58,4 @@ function getCookie(c_name)
         }
     }
     return "";
- }
+}
