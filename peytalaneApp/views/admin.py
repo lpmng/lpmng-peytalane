@@ -42,7 +42,7 @@ class User_admin(View):
     def put(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
         if "username" in request.GET:
             user_tmp = User.objects.get(username = request.GET['username'])
-            if "admin" in request.GET:
+            if "admin" in request.GET and username != request.session['username']:
                 if request.GET["admin"] == "1":
                     user_tmp.admin = True
                     user_tmp.save()
