@@ -1,6 +1,5 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
-<main>
 <!-- top page with background and date-->
 <div class="top-container top-index">
     
@@ -10,20 +9,20 @@
 </div>
 
 <!-- middle page with infos-->
-<div class="container small-container">
-    <div class="flex-inline">
+<div class="container flex-inline" style="justify-content: space-around">
+    <div class="center">
         <div class="circle medium white-container flat">
             <div class="icone" style="background-image:url('/static/peytalaneApp/helium/compass.svg')"></div>
         </div>
         <h2 class="center">Inscris toi à la LAN</h2>
     </div>
-    <div class="flex-inline">
+    <div class="center">
         <div class="circle medium white-container flat">
             <div class="icone" style="background-image:url('/static/peytalaneApp/helium/mouse.svg')"></div>
         </div>
         <h2 class="center">Choisis ton tournoi</h2>
     </div>
-    <div class="flex-inline small-container">
+    <div class="center">
         <div class="circle medium white-container flat">
             <div class="icone" style="background-image:url('/static/peytalaneApp/helium/pizza.svg')"></div>
         </div>
@@ -35,5 +34,11 @@
     <a href="/login/" class="button mainButton">Participer</a>
 </div>
 
-</main>
+<style>
+    .circle.medium
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 {% endblock %}
