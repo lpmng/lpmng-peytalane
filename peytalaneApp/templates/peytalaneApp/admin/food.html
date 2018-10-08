@@ -10,7 +10,8 @@
     <table width="600px" cellspacing="0" cellpadding="0" id="table-admin" class="white-container flat">
         <thead>
             <tr class="title">
-                <th class="first">Produit</th>
+                <th class="first">Livré</th>
+                <th >Produit</th>
                 <th>Utilisateur</th>
                 <th>Prix</th>
                 {% for option in list_options %}
@@ -22,6 +23,18 @@
         <tbody>
             {% for payment in list_food%}
         <tr>
+            <td>
+                <div class="checkboxFour">
+                    <input type="checkbox" class="permission" value="1"
+                        id="{{payment.id}}_delivered"
+                        {% if payment.delivered %}
+                            checked
+                        {% endif %}
+                        onchange="set_payment_delivered(this,'{{payment.id}}')"
+                        />
+                    <label for="{{payment.id}}_delivered"></label>
+                </div>
+            </td>
             <td>{{ payment.product }}</td>
             <td>{{ payment.user.username }}</td>
             <td>{{ payment.price }}</td>
@@ -50,7 +63,7 @@
         stylesheet:'plouf',
         col_resizer_all_cells: true,
         filters_row_index:1,
-        col_width: ["170px","170px","100px","170px"
+        col_width: ["130px","170px","170px","100px","170px"
         {% for option_name in list_options %}
                 ,"170px"
         {% endfor %}

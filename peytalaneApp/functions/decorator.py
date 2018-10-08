@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from peytalaneApp.models_dir.user import User
+from django.http import HttpResponse
 
 
 def IsLogin(function):
@@ -22,6 +23,18 @@ def IsLogin(function):
             return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs)
         else:
             return HttpResponseRedirect(reverse('login'))
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap
+
+
+def IsAdmin(function):
+    def wrap(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+        if is_admin:
+            return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs)
+        else:
+            return HttpResponse('Forbidden', status=403)
+
     wrap.__doc__ = function.__doc__
     wrap.__name__ = function.__name__
     return wrap

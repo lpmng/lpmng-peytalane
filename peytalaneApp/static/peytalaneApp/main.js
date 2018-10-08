@@ -20,7 +20,6 @@ function delete_transaction(element,id)
 
 function set_user_admin(element,username)
 {
-    console.log(element)
     if(element.checked)
         admin = 1
     else
@@ -39,6 +38,31 @@ function set_user_admin(element,username)
         }
     }
     xhr.open('PUT', '/reservation/admin/user?username=' + encodeURIComponent(username) + "&admin="+admin, true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    xhr.setRequestHeader('X-CSRFToken',getCookie("csrftoken"))
+    xhr.send()
+}
+
+function set_payment_delivered(element,id)
+{
+    if(element.checked)
+        delivered = 1
+    else
+        delivered = 0
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === 4)
+        {
+            if (xhr.status === 200) 
+            {
+                console.log("put admin ok")
+            }
+
+        }
+    }
+    xhr.open('PUT', '/reservation/admin/food?id=' + encodeURIComponent(id) + "&delivered="+delivered, true)
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.setRequestHeader('X-CSRFToken',getCookie("csrftoken"))
     xhr.send()

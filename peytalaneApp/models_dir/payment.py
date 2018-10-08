@@ -16,6 +16,7 @@ class Payment(models.Model):
     options = models.ManyToManyField(Payment_option,blank=True,through='Payment_option_value')
     comment = models.TextField(null=True,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    delivered = models.BooleanField(default=False)
 
 
 class Payment_option_value(models.Model):

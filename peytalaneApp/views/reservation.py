@@ -26,7 +26,3 @@ class Reservation(View):
             Transaction.delete_transaction(request,request.GET['id'])
             return HttpResponse()
         return HttpResponse('Bad request', status=400)
-
-
-
- 
