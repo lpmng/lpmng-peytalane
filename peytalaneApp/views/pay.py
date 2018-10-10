@@ -31,7 +31,7 @@ class Pay(View):
         return render(request, self.html, locals())
 
     @IsLogin
-    def post(self,request,*args, **kwargs):
+    def post(self, request,lan_is_reserved,have_foods,is_admin,*args, **kwargs):
         json_data=open(BASE_DIR+'/keyStripe.json')
         data = json.load(json_data)
         if 'stripeToken' in request.POST:
