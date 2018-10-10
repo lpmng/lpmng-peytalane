@@ -62,8 +62,8 @@ class Reservation_food(View):
                 args_transaction["options"][options_key] = (options[options_key],selected_value.value)
             
             if "comment" in request.POST:
-                comment = request.POST["comment"]
-            print(comment)
+                comment = request.POST["comment"].strip()
+
             Transaction.new_transaction(
                 request,
                 price,

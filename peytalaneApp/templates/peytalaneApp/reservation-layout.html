@@ -110,7 +110,7 @@
                                 {% for option,value_option in transaction.args.options.items %}
                                 <li>{{option}} : {{value_option.1 }}</li>
                                 {% endfor %}
-                                {% if transaction.comment%}
+                                {% if transaction.comment %}
                                 <div class="white-container">
                                         {{transaction.comment}}
                                 </div>
@@ -158,7 +158,7 @@
         
         body
         {
-            background-image: url("/static/peytalaneApp/img/background-flou.jpg");
+            /*background-image: url("/static/peytalaneApp/img/background-flou.jpg");*/
             height: 100vh;
             overflow-y: scroll;
             background-size: cover;
@@ -168,7 +168,7 @@
 
         main
         {
-            background-color: rgba(255, 255, 255, 0.90)
+            /*background-color: rgba(255, 255, 255, 0.90)*/
         }
     </style>
 {% endblock %}

@@ -37,3 +37,4 @@ db.sqlite3
 .vscode/
 keyArel.json
 keyCore.json
+keyStripe.json
