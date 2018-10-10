@@ -7,6 +7,13 @@ from peytalaneApp.models_dir.tournament import *
 from peytalaneApp.functions.decorator import IsLogin
 from django import forms
 from django.shortcuts import redirect
+import stripe
+import json
+import os
+
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class Pay(View):
     html = 'peytalaneApp/pay.html'
@@ -14,21 +21,54 @@ class Pay(View):
 
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods,is_admin, *args, **kwargs):
+        json_data=open(BASE_DIR+'/keyStripe.json')
+        data = json.load(json_data)
+        key = data["public"]
         transactions_list = request.session['transactions']
         tournaments_list = Tournament.objects.all()
         total = sum(transactions_list[key]['price'] for key in transactions_list)
+        total_cent = total * 100
         return render(request, self.html, locals())
-
 
     @IsLogin
     def post(self,request,*args, **kwargs):
-        transactions_list = request.session['transactions']
-        transations_keys = request.session['transactions'].keys()
-        for key in transations_keys:
-            payment = Transaction(**request.session['transactions'][key])
-            payment.payment()
+        json_data=open(BASE_DIR+'/keyStripe.json')
+        data = json.load(json_data)
+        if 'stripeToken' in request.POST:
+            transactions_list = request.session['transactions']
+            total = sum(transactions_list[key]['price'] for key in transactions_list)
 
-        request.session['transactions'] = dict()
-        request.session.modified = True
-        transactions_list = request.session['transactions']
-        return HttpResponseRedirect(reverse('reservation'))
+
+            stripe.api_key = data['private']
+
+            # Token is created using Checkout or Elements!
+            # Get the payment token ID submitted by the form:
+            token = request.POST['stripeToken']
+
+            charge = stripe.Charge.create(
+                amount=total*100,
+                currency='eur',
+                description='peytalane test',
+                source=token,
+            )
+
+            print(charge)
+
+            if charge.paid:
+                for transaction_key in transactions_list.keys():
+                    transaction = Transaction(**request.session['transactions'][transaction_key])
+                    transaction.payment()
+            
+                request.session['transactions'] = dict()
+                request.session.modified = True
+                transactions_list = request.session['transactions']
+                return HttpResponseRedirect(reverse('reservation'))
+            else:
+                error = "Le payement a échoué"
+                return render(request, self.html, locals())
+        else:
+            error = "L'api de payement n'a pas été contacté, il ne s'est rien passé"
+            return render(request, self.html, locals())
+
+
+

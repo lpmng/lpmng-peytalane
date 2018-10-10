@@ -1,50 +1,112 @@
 {% extends 'peytalaneApp/layout.html' %}
 {%block content%}
-<form method="POST" action="/pay/">
-{% csrf_token %}
-<h2>Choisir un tournoi:</h2>
-
-{%if error%}
-<div class="label error">
-    {{ error }}
-</div>
-{%endif%}
-
-{%if success%}
-<div class="label success">
-    {{ success }}
-</div>
-{%endif%}
+<!--
+<form method="POST" action="/pay/create-account" id="form-pay" class="top-container">
+-->
+<div class="top-container">
 
 <div class="facture white-container">
+  <h2>Récapilulatif du payement</h2>
+  <ul>
   {% for key, transaction in transactions_list.items %}
-  <li class="white-container flat flex-inline">
-      <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
-      <div class="product flexible">
-          <h3>{{ transaction.product }}</h3>
-          <ul>
-              {% for option,value_option in transaction.args.options.items %}
-              <li>{{option}} : {{value_option.1 }}</li>
-              {% endfor %}
-              {% if transaction.comment%}
-              <div class="white-container">
-                      {{transaction.comment}}
-              </div>
-              {%endif%}
-          </ul>
-      </div>
+  <li class="flat flex-inline">
+      <div class="flexible">{{ transaction.product }}</div>
       <div class="price">{{ transaction.price }} € </div>
   </li>
   {% endfor %}
+</ul>
+<!--
   <div class="total">Total : {{total}} €</div>
-  Numéro de téléphone <input id="phone" type="tel" name="telephone">
-  <input type="submit" value="Payer">
+    <h2>Formulaire de payement</h2>
+    <input type="hidden" name="token" id="token">
+    <label>
+      <span>First Name</span>
+      <input class="inp-first-name" name="first_name">
+    </label>
+    <label>
+      <span>Last Name</span>
+      <input class="inp-last-name" name="last_name">
+    </label>
+    <fieldset>
+      <legend><h3>Address:</h3></legend>
+      <label>
+        <span>Street Address Line 1</span>
+        <input class="inp-street-address1" name="street_address1">
+      </label>
+      <label>
+        <span>City</span>
+        <input class="inp-city" name="city">
+      </label>
+      <label>
+        <span>State</span>
+        <input class="inp-state" name="state">
+      </label>
+      <label>
+        <span>Postal Code</span>
+        <input class="inp-zip" name="zip">
+      </label>
+    </fieldset>
+    <input type="submit" value="envoyer">
+  </form>
+-->
+
+<form action="/pay/" method="POST">
+    {% csrf_token %}
+
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{key}}"
+        data-amount="{{total_cent}}"
+        data-name="Peytalan"
+        data-description="Example charge"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-currency="eur">
+    </script>
+</form>
+
+<p>En cliquant sur ce bouton, vous acceptez <a href="#">le reglement de la LAN</a> </p>
+
 </div>
 
 
-</form>
+</div>
+
+<!--
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+
+  const stripe = Stripe('pk_live_3G9J3CjMlPaV46s141qP7wRg');
+  const myForm = document.querySelector('#form-pay');
+  myForm.addEventListener('submit', handleForm);
+
+  async function handleForm(event) {
+  event.preventDefault();
+
+    const result = await stripe.createToken('account', {
+        legal_entity: {
+        first_name: document.querySelector('.inp-first-name').value,
+        last_name: document.querySelector('.inp-last-name').value,
+        address: {
+            line1: document.querySelector('.inp-street-address1').value,
+            city: document.querySelector('.inp-city').value,
+            state: document.querySelector('.inp-state').value,
+            postal_code: document.querySelector('.inp-zip').value,
+        },
+        },
+        tos_shown_and_accepted: true,
+    });
+
+    if (result.token) {
+        document.querySelector('#token').value = result.token.id;
+        myForm.submit();
+    }
+  }
 
 
+
+</script>
+-->
 
 <style>
   .facture{
@@ -67,11 +129,11 @@
   {
     vertical-align: top;
   }
-  /*
-  li{
-    list-style-type: none;
-  }
   
+  li{
+    list-style-type:circle !important;
+  }
+  /*
   
   .product{
     text-align:left;

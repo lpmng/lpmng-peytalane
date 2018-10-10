@@ -48,6 +48,16 @@ to be connected with API (Arel and lpmng-core), you have to create two files:
         "app":"appName"
     }
 ```  
+
+to use stripe to pay you need a file keyStripe.json
+
+```json
+    {
+        "private":"private_key",
+        "public":"public_key"
+    }
+```  
+
 <span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
 
 you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
@@ -65,16 +75,19 @@ Compile sass
     $ sass scss/main.scss peytalaneApp/static/peytalaneApp/style.min.css --style compressed
 ```
 
+TODO for the lan
+----------------
+* add session in the core
+* Add a button to export food reservation into a clean csv file ~ok
+* Do the search for foods
+
 TODO
 ----
-* Do front-page for payment, do payment request to lydia api , clean transactions list
-* Find a solution if a user had already reserved a tournament and want to change / (same for food ?)
-* Create an admin page with the summary of all reservations ~done
-* Update the style to be reponsive
-* Do the search for foods
 * Add a page with the summary of all user's transactions
 * Add some screenshots in the readme ;)
+* Update the style to be reponsive
 
 IDEAS
 -----
 * choose payment online or payment on-site ? 
+
