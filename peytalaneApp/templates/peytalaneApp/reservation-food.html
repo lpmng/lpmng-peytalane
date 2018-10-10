@@ -21,12 +21,12 @@
 	<div>Kebab : 5€</div>
 </div>
 <div class="center">
-	<input type="search" placeholder="Rechercher un aliment"/>
+	<input type="search" placeholder="Rechercher un aliment" oninput="searchFood(this)"/>
 </div>
 <div class="flex">
     <ul id="food-list">
 	{% for pizza in pizzas_list %}
-	<li class="white-container flat flex-inline">
+	<li class="white-container flat flex-inline food-line" id="container-{{pizza.name}}">
 	    <!--<div class="displayFood white-container flat">-->
 		<div class="flexible">
 			<h3 class="product">{{ pizza.name }}</h3>
@@ -80,4 +80,5 @@
 	{% endfor %}
     </ul> 
 </div>
+<script src="/static/peytalaneApp/searchFood.js"></script>
 {%endblock%}

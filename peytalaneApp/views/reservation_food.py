@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from django.middleware.csrf import CsrfViewMiddleware
+from django.http import HttpResponse
 
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.food import Food
@@ -9,9 +10,20 @@ from peytalaneApp.models_dir.user import User
 from peytalaneApp.functions.decorator import IsLogin
 
 import pdb
+import json
 
 # pages après sélection de l'option choix nourriture
 
+
+class Search_food(View):
+    @IsLogin
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+        if "s" in request.GET:
+            pizzas_list = Food.objects.filter(name__contains=request.GET["s"])
+            name_pizzas = [pizza.name for pizza in pizzas_list]
+            response_data = dict()
+            response_data['pizzas'] = name_pizzas
+            return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 class Reservation_food(View):
     """
@@ -22,7 +34,6 @@ class Reservation_food(View):
     def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
         transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
-        #print(transaction_list)
         return render(request, self.RENDER_HTML, locals())
     
 

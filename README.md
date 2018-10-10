@@ -79,7 +79,6 @@ TODO for the lan
 ----------------
 * add session in the core
 * Add a button to export food reservation into a clean csv file ~ok
-* Do the search for foods
 
 TODO
 ----
