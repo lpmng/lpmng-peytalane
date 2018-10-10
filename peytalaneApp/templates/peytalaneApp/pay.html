@@ -5,6 +5,26 @@
 -->
 <div class="top-container">
 
+{% if error %}
+  <div class="modal">
+      <input id="payment_ok" type="checkbox" checked/>
+      <label for="payment_ok" class="overlay"></label>
+      <article>
+      <header>
+          <h3>Erreur, le payement n'a pas été effectué</h3>
+          <label for="payment_ok" class="close">&times;</label>
+      </header>
+      <section class="content">
+          {{error}}
+      </section>
+      <footer>
+              <label for="payment_ok" class="button">Ok</label>
+      </footer>
+      </article>
+  </div>
+  {% endif %}
+
+
 <div class="facture white-container">
   <h2>Récapilulatif du payement</h2>
   <ul>

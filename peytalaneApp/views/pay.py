@@ -44,15 +44,16 @@ class Pay(View):
             # Token is created using Checkout or Elements!
             # Get the payment token ID submitted by the form:
             token = request.POST['stripeToken']
-
-            charge = stripe.Charge.create(
-                amount=total*100,
-                currency='eur',
-                description='peytalane test',
-                source=token,
-            )
-
-            print(charge)
+            try:
+                charge = stripe.Charge.create(
+                    amount=total*100,
+                    currency='eur',
+                    description='peytalane test',
+                    source=token,
+                )
+            except Exception as e:
+                error = str(e)
+                return render(request, self.html, locals())
 
             if charge.paid:
                 for transaction_key in transactions_list.keys():
