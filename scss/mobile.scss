@@ -1,0 +1,39 @@
+#top-pay-button
+{
+    display: none;
+}
+
+@media only screen and (max-width: 60em) {
+   
+    .menu
+    {
+        max-width: 300px;
+    }
+
+    nav .burger
+    {
+        max-width: none;
+    }
+
+    #reservation-resume
+    {
+        display: none;
+    }
+
+    #title-app
+    {
+        display: none;
+    }
+
+    #top-pay-button
+    {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        width: 180px;
+        top: 3px;
+        display: block;
+    }
+}

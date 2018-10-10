@@ -11,9 +11,10 @@
     <body>
         <nav class="demo">
             <a href="/" class="brand">
-                <span><img src="/static/peytalaneApp/img/logo.jpg" class="logo-nav"/> Peytalane</span>
+                <span><img src="/static/peytalaneApp/img/logo.jpg" class="logo-nav"/> <span id="title-app">Peytalane</span> </span>
             </a>
-        
+            
+            <a href="/pay" class="button" id="top-pay-button">Payer 5€</a>
             <!-- responsive-->
             <input id="bmenub" type="checkbox" class="show">
             <label for="bmenub" class="burger pseudo button">&#8801;</label>
@@ -23,7 +24,7 @@
                     {% if is_admin %}
                         <a href="/reservation/admin/food">Page d'administration</a>
                     {% endif %}
-                    <a href="/reservation/">Réserver la lan</a>
+                    <a href="/reservation/">Les reservations</a>
                     <a href="/logout/">Déconnexion</a>
                 {% else %}
                 <a href="/login/" class="button icon-puzzle">Connexion</a>

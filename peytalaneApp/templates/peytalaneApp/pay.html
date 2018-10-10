@@ -25,16 +25,32 @@
   {% endif %}
 
 
+
+
+  
 <div class="facture white-container">
   <h2>Récapilulatif du payement</h2>
   <ul>
-  {% for key, transaction in transactions_list.items %}
-  <li class="flat flex-inline">
-      <div class="flexible">{{ transaction.product }}</div>
-      <div class="price">{{ transaction.price }} € </div>
-  </li>
-  {% endfor %}
-</ul>
+    {% for key, transaction in transactions_list.items %}
+      <li class="white-container flat flex-inline">
+          <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
+          <div class="product flexible">
+              <h3>{{ transaction.product }}</h3>
+              <ul>
+                  {% for option,value_option in transaction.args.options.items %}
+                  <li>{{option}} : {{value_option.1 }}</li>
+                  {% endfor %}
+                  {% if transaction.comment %}
+                  <div class="white-container">
+                          {{transaction.comment}}
+                  </div>
+                  {%endif%}
+              </ul>
+          </div>
+          <div class="price">{{ transaction.price }} € </div>
+      </li>
+    {% endfor %}
+  </ul>
 
 {% if total %}
 
