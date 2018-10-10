@@ -15,40 +15,8 @@
   </li>
   {% endfor %}
 </ul>
-<!--
-  <div class="total">Total : {{total}} €</div>
-    <h2>Formulaire de payement</h2>
-    <input type="hidden" name="token" id="token">
-    <label>
-      <span>First Name</span>
-      <input class="inp-first-name" name="first_name">
-    </label>
-    <label>
-      <span>Last Name</span>
-      <input class="inp-last-name" name="last_name">
-    </label>
-    <fieldset>
-      <legend><h3>Address:</h3></legend>
-      <label>
-        <span>Street Address Line 1</span>
-        <input class="inp-street-address1" name="street_address1">
-      </label>
-      <label>
-        <span>City</span>
-        <input class="inp-city" name="city">
-      </label>
-      <label>
-        <span>State</span>
-        <input class="inp-state" name="state">
-      </label>
-      <label>
-        <span>Postal Code</span>
-        <input class="inp-zip" name="zip">
-      </label>
-    </fieldset>
-    <input type="submit" value="envoyer">
-  </form>
--->
+
+{% if total %}
 
 <form action="/pay/" method="POST">
     {% csrf_token %}
@@ -69,7 +37,12 @@
 
 </div>
 
-
+{% else %}
+  <div>Rien à payer</div>
+  <div class="center">
+    <a href="/reservation" class="button">Retourner aux achats</a>
+  </div>
+{% endif %}
 </div>
 
 <!--

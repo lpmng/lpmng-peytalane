@@ -62,7 +62,7 @@ class Pay(View):
                 request.session['transactions'] = dict()
                 request.session.modified = True
                 transactions_list = request.session['transactions']
-                return HttpResponseRedirect(reverse('reservation'))
+                return HttpResponseRedirect("/reservation?p=plouf")
             else:
                 error = "Le payement a échoué"
                 return render(request, self.html, locals())

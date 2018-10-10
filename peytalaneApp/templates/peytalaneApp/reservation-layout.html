@@ -1,5 +1,23 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
+    {% if ok_payment %}
+    <div class="modal">
+        <input id="payment_ok" type="checkbox" checked/>
+        <label for="payment_ok" class="overlay"></label>
+        <article>
+        <header>
+            <h3>Payement effectué</h3>
+            <label for="payment_ok" class="close">&times;</label>
+        </header>
+        <section class="content">
+            Le payement a bien été effectué
+        </section>
+        <footer>
+                <label for="payment_ok" class="button">Ok</label>
+        </footer>
+        </article>
+    </div>
+    {% endif %}
     <div class="flex" id="reservation">
         <section id="reservation-content">
             <header class="container" id="reservation-header">

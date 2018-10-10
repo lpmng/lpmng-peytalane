@@ -16,7 +16,8 @@ class Reservation(View):
     """
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
-        print(*args)
+        if "p" in request.GET:
+            ok_payment = True
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
     
