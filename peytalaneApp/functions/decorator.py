@@ -15,12 +15,15 @@ def IsLogin(function):
             else:
                 lan_is_reserved = 0
             
-            is_admin = user.admin            
+            is_admin = user.admin
+            
+            transactions_list = request.session['transactions']
+            total = sum(transactions_list[key]['price'] for key in transactions_list)            
             
             have_foods = user.payment_set.filter(type_product = "food") #[elem.food for elem in user.Payment_set.all()]
             have_tournament = user.payment_set.filter(type_product = "tournament") #[elem.food for elem in user.Payment_set.all()]
 
-            return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs)
+            return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs)
         else:
             return HttpResponseRedirect(reverse('login'))
     wrap.__doc__ = function.__doc__
@@ -29,9 +32,9 @@ def IsLogin(function):
 
 
 def IsAdmin(function):
-    def wrap(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+    def wrap(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         if is_admin:
-            return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs)
+            return function(self,request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs)
         else:
             return HttpResponse('Forbidden', status=403)
 

@@ -13,8 +13,11 @@
             <a href="/" class="brand">
                 <span><img src="/static/peytalaneApp/img/logo.jpg" class="logo-nav"/> <span id="title-app">Peytalane</span> </span>
             </a>
-            
-            <a href="/pay" class="button" id="top-pay-button">Payer 5€</a>
+            {% if 'username' in request.session %}
+                <a href="/pay" class="button" id="top-pay-button">Payer {{total}}€</a>
+            {% else %}
+                <a href="/login/" class="button icon-puzzle" id="top-pay-button">Connexion</a>
+            {% endif %}
             <!-- responsive-->
             <input id="bmenub" type="checkbox" class="show">
             <label for="bmenub" class="burger pseudo button">&#8801;</label>

@@ -37,13 +37,17 @@ class Transaction():
 
     @staticmethod
     def clean_transaction(request,action_payment):
-        for key in request.session["transactions"].keys():
+        keys = request.session["transactions"].keys()
+        new_dict = dict()
+        for key in keys:
             transaction = request.session["transactions"][key]
             #pdb.set_trace()
             
-            if transaction["action_payment"] == action_payment:
-                request.session["transactions"].pop(key)
-                request.session.modified = True
+            if transaction["action_payment"] != action_payment:
+                new_dict[key] = request.session["transactions"][key]
+
+        request.session["transactions"] = new_dict
+        request.session.modified = True
 
 
     @staticmethod

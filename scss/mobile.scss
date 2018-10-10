@@ -42,4 +42,9 @@
         margin: 10px 5% !important;
         width: auto !important; 
     }
+
+    .flex-inline.reverse-mobile
+    {
+        flex-direction: column;
+    }
 }

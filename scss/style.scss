@@ -30,6 +30,12 @@ html input[type="search"]
     margin: 10px;
 }
 
+body .flex
+{
+    margin-left: 0;
+    width: auto;
+}
+
 .modal > input:checked ~ .overlay ~ *
 {
     min-width: 400px;
@@ -150,6 +156,13 @@ html .green
 .mainButton
 {
     font-size:1.5em;
+    background-color: #ed485f;
+    background-image: linear-gradient(90deg,#f27c36,#ed485f);
+    border-radius: 50px;
+    padding: in 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 40px;
 }
 
 

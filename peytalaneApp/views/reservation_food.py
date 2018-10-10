@@ -17,7 +17,7 @@ import json
 
 class Search_food(View):
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         if "s" in request.GET:
             pizzas_list = Food.objects.filter(name__contains=request.GET["s"])
             name_pizzas = [pizza.name for pizza in pizzas_list]
@@ -31,14 +31,14 @@ class Reservation_food(View):
     """
     RENDER_HTML = 'peytalaneApp/reservation-food.html'
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         transactions_list = request.session['transactions']
         pizzas_list = Food.objects.all()
         return render(request, self.RENDER_HTML, locals())
     
 
     @IsLogin
-    def post(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+    def post(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         pizzas_list = Food.objects.all()
         user = User.objects.get(username=request.session['username'])
         

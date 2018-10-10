@@ -8,36 +8,39 @@ from peytalaneApp.functions.decorator import IsLogin
 
 #pages après le login
 class Reservation_tournament(View):
-    html = 'peytalaneApp/reservation-tournament.html'
+    html = 'peytalaneApp/reservation-index.html'
 
     """
         Renvoie la page d'Inscription au chargement de la page
     """
     @IsLogin
-    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin, *args, **kwargs):
+    def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
+        user = User.objects.get(username = request.session['username'])
+        if self.inscription_lan(user,request):
+            success = "Inscription ajoutée au panier"
+        else:
+            error = "Inscription non ajoutée au panier"
+        
         transactions_list = request.session['transactions']
 
-        tournaments_list = Tournament.objects.all()
+        #tournaments_list = Tournament.objects.all()
 
-        print(tournaments_list)
+        
 
         if 'id_tournament' in request.GET:
             self.add_tournament(0)
 
         return render(request, self.html, locals())
 
-
+    '''
     @IsLogin
-    def post(self,request,lan_is_reserved,have_foods,have_tournament,is_admin,*args, **kwargs):
+    def post(self,request,lan_is_reserved,have_foods,have_tournament,is_admin,total,*args, **kwargs):
         user = User.objects.get(username = request.session['username'])
         # if inscription without tournament...
         if(have_tournament):
             error = "Vous êtes déjà inscrit sur un tournoi"
         elif('no-tournament' in request.POST):
-            if self.inscription_lan(user,request):
-                success = "Inscription ajoutée au panier"
-            else:
-                error = "Inscription non ajoutée au panier"
+            
         elif not 'tournoi' in request.POST:
             error = "Veuillez selectionner un tournoi"
         elif 'pseudo' in request.POST: # inscription with tournament
@@ -50,7 +53,7 @@ class Reservation_tournament(View):
         tournaments_list = Tournament.objects.all()
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
-
+    '''
     #add transaction to book the lan
     def inscription_lan(self,user,request):
 
@@ -79,13 +82,3 @@ class Reservation_tournament(View):
             {"user":user.username,"pseudo":pseudo,"id_tournament":tournament.id}
         )
         return "Réservation ajoutée dans le panier"
-
-    # delete all transaction where action_payment = action_payment arg
-    def clear_transaction(self,request,action_payment):
-        transactions_list = request.session['transactions']
-        new_list = []
-        for transaction_obj in transactions_list:
-            if(transaction_obj["action_payment"] != action_payment):
-                new_list.append(transaction_obj)
-
-        request.session['transactions'] = new_list

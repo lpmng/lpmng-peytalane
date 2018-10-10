@@ -24,6 +24,7 @@
                 <h2>Résumé:</h2>
                 <ul id="resume">
                     <!-- mettre un web component quand ce sera supporté par tous les navigateurs du monde (plutot que de faire un copié collé)-->
+                    
                     <a href="/reservation/tournament">
                     <li class="flex-inline resume-line white-container  
                         {% if lan_is_reserved %}
@@ -39,13 +40,14 @@
                         <div class="flexible">
                             <h3>LAN</h3>
                             {% if lan_is_reserved %}
-                                <div>Lan payé !</div>
+                                <div>Lan payée !</div>
                             {% else %}
-                                <div>Lan non payé !</div>
+                                <div>Reserver la lan.</div>
                             {% endif %}
                         </div>
                     </li>
                     </a>
+                    <!--
                     <a href="/reservation/tournament">
                     <li class="flex-inline resume-line white-container 
                         {% if have_tournament %}
@@ -75,7 +77,7 @@
                             {% endif %}
                         </div>
                     </li>
-                    </a>
+                    </a>-->
                     <a href="/reservation/food">
                     <li class="flex-inline resume-line white-container 
                         {% if have_foods %}

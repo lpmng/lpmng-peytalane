@@ -15,18 +15,22 @@
     {{ success }}
 </div>
 {%endif%}
-<div class="flex-inline info">
-	<div>Grande pizza : 10€,</div>
-	<div>Moyenne pizza : 7€,</div>
-	<div>Kebab : 5€</div>
-</div>
+
 <div class="center">
 	<input type="search" placeholder="Rechercher un aliment" oninput="searchFood(this)"/>
 </div>
+
+<ul class="white-container small-container flat" style="margin:20px auto;border-color:orange;box-shadow: none; ">
+		<h4>Les prix</h4>
+		<li>Grande pizza : 10€</li>
+		<li>Moyenne pizza : 7€</li>
+		<li>Kebab : 5€</li>
+</ul>
+
 <div class="flex">
     <ul id="food-list">
 	{% for pizza in pizzas_list %}
-	<li class="white-container flat flex-inline food-line" id="container-{{pizza.name}}">
+	<li class="white-container flat flex-inline food-line reverse-mobile" id="container-{{pizza.name}}">
 	    <!--<div class="displayFood white-container flat">-->
 		<div class="flexible">
 			<h3 class="product">{{ pizza.name }}</h3>
@@ -48,10 +52,11 @@
 	    <label for="optionFood{{ pizza.name}}" class="overlay"></label>
 	    <article>
 		<header>
-		    <h3>Choix des options</h3>
+			<h3 class="center">{{pizza}}</h3>
 		    <label for="optionFood{{ pizza.name}}" class="close">&times;</label>
 		</header>
 		<section class="content">
+			
 		    {% for option in pizza.options.all %}
 		    <label>
 			<h4>{{ option.name }}</h4>
