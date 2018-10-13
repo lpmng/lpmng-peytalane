@@ -27,7 +27,8 @@ html input[type="search"]
     border-radius: 0;
     width: 400px;
     background-color: transparent;
-    margin: 10px;
+    margin: 10px 0px;
+    max-width: 100%;
 }
 
 body .flex
@@ -209,6 +210,11 @@ html .green
     background-color: rgba(255,255,255,0.95);
     box-shadow:$shadow;
     padding: 10px 3% 10px 3%;
+}
+
+ul.white-container
+{
+    padding: 10px 30px;
 }
 
 .white-container.small-padding
