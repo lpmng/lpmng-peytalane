@@ -6,11 +6,22 @@
 @media only screen and (max-width: 60em) {
    
 
+    #resume .small
+    {
+        width: 70px;
+        height: 70px;
+    }
+
+    #resume .small .icone
+    {
+        height: 40px;
+        width: 40px;
+    }
     .top-index
     {
         min-height: 0;
         padding-left: 15px;
-        
+
     }
     .menu
     {
