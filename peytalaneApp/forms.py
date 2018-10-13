@@ -8,9 +8,9 @@ class InscriptionExtForm(forms.Form):
     passwordConfirm = forms.CharField(widget=forms.PasswordInput,label="Confirmation mot de passe")
 
 class InscriptionEistiForm(forms.Form):
-    username = forms.CharField(label="Pseudo",max_length=100)
+    username = forms.CharField(label="Utilisateur",max_length=100)
     password = forms.CharField(widget=forms.PasswordInput,label="Mot de passe")
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Pseudo",max_length=100)
+    username = forms.CharField(label="Utilisateur",max_length=100)
     password = forms.CharField(widget=forms.PasswordInput,label="Mot de passe")
