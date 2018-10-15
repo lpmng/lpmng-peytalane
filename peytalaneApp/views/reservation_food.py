@@ -88,4 +88,6 @@ class Reservation_food(View):
             error = "Réservation refusée"
         
         transactions_list = request.session['transactions']
+        total = sum(transactions_list[key]['price'] for key in transactions_list)
+
         return render(request, self.RENDER_HTML, locals())

@@ -39,7 +39,8 @@ body .flex
 
 .modal > input:checked ~ .overlay ~ *
 {
-    min-width: 400px;
+    width: 400px;
+    max-width: 95%;
 }
 
 h3

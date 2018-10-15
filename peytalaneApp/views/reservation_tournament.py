@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.tournament import *
 from peytalaneApp.functions.decorator import IsLogin
@@ -30,7 +31,7 @@ class Reservation_tournament(View):
         if 'id_tournament' in request.GET:
             self.add_tournament(0)
 
-        return render(request, self.html, locals())
+        return HttpResponseRedirect(reverse('reservation'))
 
     '''
     @IsLogin
