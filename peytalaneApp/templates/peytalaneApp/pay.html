@@ -33,7 +33,7 @@
   <ul id="reservation-list">
     {% for key, transaction in transactions_list.items %}
       <li class="white-container flat flex-inline">
-          <div onclick="delete_transaction(this,{{key}})" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
+          <div onclick="delete_transaction(this,{{key}},true)" class="tiny"><img class="icone" src="/static/peytalaneApp/helium/trash.svg"/></div>
           <div class="product flexible">
               <h3>{{ transaction.product }}</h3>
               <ul>
@@ -61,8 +61,8 @@
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="{{key}}"
         data-amount="{{total_cent}}"
-        data-name="Peytalan"
-        data-description="Example charge"
+        data-name="Peytalane"
+        data-description="Paiement Air-eisti"
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto"
         data-currency="eur">

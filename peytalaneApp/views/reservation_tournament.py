@@ -18,20 +18,10 @@ class Reservation_tournament(View):
     def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         user = User.objects.get(username = request.session['username'])
         if self.inscription_lan(user,request):
-            success = "Inscription ajoutée au panier"
+            return HttpResponseRedirect("/reservation?lan=true")
         else:
-            error = "Inscription non ajoutée au panier"
-        
-        transactions_list = request.session['transactions']
+            return HttpResponseRedirect("/reservation?lan=false")
 
-        #tournaments_list = Tournament.objects.all()
-
-        
-
-        if 'id_tournament' in request.GET:
-            self.add_tournament(0)
-
-        return HttpResponseRedirect(reverse('reservation'))
 
     '''
     @IsLogin

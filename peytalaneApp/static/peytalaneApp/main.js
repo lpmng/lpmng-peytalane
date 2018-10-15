@@ -1,4 +1,4 @@
-function delete_transaction(element,id)
+function delete_transaction(element,id,reload=false)
 {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function()
@@ -8,6 +8,10 @@ function delete_transaction(element,id)
             if (xhr.status === 200) 
             {
                 element.parentNode.parentNode.removeChild(element.parentNode);
+                if(reload)
+                {
+                    window.location.reload(false); 
+                }
             }
 
         }

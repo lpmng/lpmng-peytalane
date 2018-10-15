@@ -18,6 +18,12 @@ class Reservation(View):
     def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         if "p" in request.GET:
             ok_payment = True
+
+        if "lan" in request.GET:
+            if request.GET["lan"]:
+                ok_lan = True
+            else:
+                not_ok_lan = True
         transactions_list = request.session['transactions']
         return render(request, self.html, locals())
     
