@@ -29,7 +29,26 @@
             <label for="payment_ok" class="close">&times;</label>
         </header>
         <section class="content">
-            L'inscription à la LAN a été ajoutée au panier
+            Dès que aurez payé, votre compte aura un accés internet à la prochaine Lan.
+        </section>
+        <footer>
+                <label for="payment_ok" class="button">Ok</label>
+        </footer>
+        </article>
+    </div>
+    {% endif %}
+
+    {% if not_ok_lan %}
+    <div class="modal">
+        <input id="payment_ok" type="checkbox" checked/>
+        <label for="payment_ok" class="overlay"></label>
+        <article>
+        <header>
+            <h3>Erreur</h3>
+            <label for="payment_ok" class="close">&times;</label>
+        </header>
+        <section class="content">
+            Inscription refusé, vous êtes probablement déjà inscrit.
         </section>
         <footer>
                 <label for="payment_ok" class="button">Ok</label>
@@ -63,7 +82,7 @@
                 <ul id="resume">
                     <!-- mettre un web component quand ce sera supporté par tous les navigateurs du monde (plutot que de faire un copié collé)-->
                     
-                    <a href="/reservation/tournament">
+                    <a  {% if not lan_is_reserved %} href="/reservation/tournament" {% endif %}>
                     <li class="flex-inline resume-line white-container  
                         {% if lan_is_reserved %}
                             success
@@ -80,7 +99,7 @@
                             {% if lan_is_reserved %}
                                 <div>Lan payée !</div>
                             {% else %}
-                                <div>Reserver la lan.</div>
+                                <div>Cliquez pour reserver la lan.</div>
                             {% endif %}
                         </div>
                     </li>
@@ -141,7 +160,7 @@
                                     </ul>
                                 </div>
                             {% else %}
-                                <div class="flexible">Pas de repas</div>
+                                <div class="flexible">Cliquez pour reserver de la nourriture</div>
                             {% endif %}
                         </div>
                     </li>

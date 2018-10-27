@@ -20,7 +20,7 @@ class Reservation(View):
             ok_payment = True
 
         if "lan" in request.GET:
-            if request.GET["lan"]:
+            if request.GET["lan"] == "true":
                 ok_lan = True
             else:
                 not_ok_lan = True

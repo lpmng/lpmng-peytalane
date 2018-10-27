@@ -10,12 +10,65 @@ main
 
 }
 
-
-button, html input[type="button"], input[type="reset"], input[type="submit"]
+/***** Button ****/
+/** There is html before to bypass the framework **/
+html button, html input[type="button"],html input[type="reset"],html input[type="submit"],html .button
 {
     margin-left: 7px;
     margin-right: 7px;
+    min-width: 150px;
+    padding: 0.45em 1em;
 }
+
+html .button.mainButton,html input[type="button"].mainButton,html input[type="submit"].mainbutton
+{
+    font-size:1.5em;
+    background-color: #ed485f;
+    background-image: linear-gradient(90deg,#f27c36,#ed485f);
+    border-radius: 50px;
+    padding: in 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 40px;
+}
+
+/*** modal ***/
+
+.modal .overlay ~ * .dangerous, .card .dangerous
+{
+    float: none;
+}
+
+.modal .overlay ~ * footer, .card footer
+{
+    text-align: center;
+}
+
+
+.modal > input:checked ~ .overlay ~ *
+{
+    width: 500px;
+    max-width: 95%;
+    padding: 1em;
+}
+
+.modal .overlay ~ * header
+{
+    position: unset;
+    text-align: center;
+    border: none;
+}
+
+.modal .overlay ~ * header h1, .card header h1, .modal .overlay ~ * header h2, .card header h2, .modal .overlay ~ * header h3, .card header h3, .modal .overlay ~ * header h4, .card header h4, .modal .overlay ~ * header h5, .card header h5, .modal .overlay ~ * header h6, .card header h6
+{
+    margin: 0;
+}
+
+.modal .overlay ~ * section, .card section
+{
+    text-align: justify;
+}
+
 
 html input[type="search"]
 {
@@ -37,11 +90,9 @@ body .flex
     width: auto;
 }
 
-.modal > input:checked ~ .overlay ~ *
-{
-    width: 400px;
-    max-width: 95%;
-}
+
+/*************/
+
 
 h3
 {
@@ -154,18 +205,6 @@ html .green
 .center
 {
     text-align: center;
-}
-
-.mainButton
-{
-    font-size:1.5em;
-    background-color: #ed485f;
-    background-image: linear-gradient(90deg,#f27c36,#ed485f);
-    border-radius: 50px;
-    padding: in 50px;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 40px;
 }
 
 
