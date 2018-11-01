@@ -16,7 +16,7 @@ class Reservation_tournament(View):
     """
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
-        user = User.objects.get(username = request.session['username'])
+        user = request.user
         if self.inscription_lan(user,request):
             return HttpResponseRedirect("/reservation?lan=true")
         else:

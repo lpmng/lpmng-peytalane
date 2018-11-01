@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from peytalaneApp.models_dir.user import User
 from peytalaneApp.models_dir.food import *
 from peytalaneApp.models_dir.tournament import *
@@ -57,3 +58,4 @@ class ParticipantAdmin(admin.ModelAdmin):
 
 admin.site.register(Tournament, TournamentAdmin)
 admin.site.register(Participant, ParticipantAdmin)
+admin.site.unregister(Group)

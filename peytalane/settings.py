@@ -121,3 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'peytalaneApp/static/','/static'),)
+
+AUTH_USER_MODEL = 'peytalaneApp.User'
+AUTHENTICATION_BACKENDS = ['peytalaneApp.functions.authentication.CoreBackend']

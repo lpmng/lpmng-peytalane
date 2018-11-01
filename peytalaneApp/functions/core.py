@@ -7,11 +7,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class CoreRequest():
+    "Module pour la gestion des requètes sur LPMNG-Core"
+
     urlCore = "http://127.0.0.1:8001"
 
     def get_token(self,user,pwd):
         """
-            recupere un token de l'api du core si le user et le mot de passe correspondent
+            Recupère un token de l'api du Core si le user et le mot de passe correspondent
         """
         #on charge les identifiants pour se connecter à l'api du core (il faudrait faire un try catch...)
         json_data=open(BASE_DIR+'/keyCore.json')
@@ -35,9 +37,26 @@ class CoreRequest():
                 return http_response_json['access_token']
         return False
 
+    def add_session(self,request):
+        """
+            Fait une requète pour donner une session à l'utilisateur qui est connecté
+        """
+        token = request.session["token"]
+        username = request.user.username
+        req = self.requete_core_get("/users/"+username+"/",token)
+        req['nbSessions'] = 1
+        headers = {'Accept':'application/json','AUTHORIZATION':'Bearer '+token}
+        http_response = requests.patch(self.urlCore+"/users/"+username+"/",headers = headers,data=req)
+
+
+
     def requete_core_get(self,url_api,token):
         """
-        fait une requete sur l'api du core et renvoi le résultat en json (le token doit être valide)
+            Fait une requète sur l'api du Core et renvoi le résultat en Json (le token doit être valide)
+
+            * url_api : url sur laquelle la requète doit être faite
+            * token : token d'un utilisateur identifié
+
         """
         headers = {'Accept':'application/json','AUTHORIZATION':'Bearer '+token}
         data = {
@@ -49,7 +68,12 @@ class CoreRequest():
         else:
             return {}
 
-    def addUser(self,username,firstname,surname,mail,password):
+    def add_user(self,username,firstname,surname,mail,password):
+        """
+            Inscrit un utilisateur sur le Core.
+
+            Renvoie `True` si celui-ci à été ajouté `False` sinon
+        """
         data = {
             'username':username,
             'first_name':firstname,
@@ -64,7 +88,18 @@ class CoreRequest():
         else:
             return False
 
-    def logUser(self,username,password):
+    def login_user(self,username,password):
+        """
+            Vérifie si les identifiants fonctionnent avec le Core.
+
+            Si les identifiants sont bon, renvoi un dictionnaire contenant les informations de l'utilisateur et le token d'identification.
+
+            Sinon renvoie None
+
+            Attention : Pour identifier un utilisateur dans une vue il faut utiliser la methode native de django: 
+
+            >>> user = authenticate(username=username, password=password, request=request)
+        """
         try:
             token = self.get_token(username,password)
             if token:
@@ -72,6 +107,6 @@ class CoreRequest():
                 req['token'] = token
                 return req
             else:
-                return {}
+                return None
         except:
-            return {}
+            return None

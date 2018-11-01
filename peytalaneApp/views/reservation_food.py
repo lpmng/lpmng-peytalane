@@ -40,7 +40,7 @@ class Reservation_food(View):
     @IsLogin
     def post(self, request,lan_is_reserved,have_foods,have_tournament,is_admin,total, *args, **kwargs):
         pizzas_list = Food.objects.all()
-        user = User.objects.get(username=request.session['username'])
+        user = request.user
         
         if("pizzaId" in request.POST and "pizzaName" in request.POST):
 
