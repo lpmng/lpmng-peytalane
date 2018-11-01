@@ -33,7 +33,7 @@
     
     <form class="white-container" action="/inscription/" method="POST">
         {% csrf_token %}
-        <h2 class="center">Inscription non EISTI</h2>
+        <h2 class="center">Inscription exterieur</h2>
         <fieldset class="flex two flex-450">
             <label>Nom:{{ form.lastName }}</label>
             <label>Prenom:{{ form.firstName }}</label>
@@ -66,6 +66,12 @@
         color:white;
         font-weight: 800;
         font-size: 1.2em;
+    }
+
+    h2
+    {
+        font-size: 2em;
+        font-weight: 300;
     }
 </style>
 {% endblock %}

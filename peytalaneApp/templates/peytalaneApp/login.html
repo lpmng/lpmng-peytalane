@@ -1,37 +1,62 @@
 {% extends 'peytalaneApp/layout.html' %}
 {% block content %}
-<div class="center top-container">
+<div class="flex-inline center top-container container">
+    <section class=" center white-container">
+
+        
+        <h2>Identifiants AirEISTI</h2>
         {% if error %}
         <div class="center label error">
-    
             <strong>{{ error }}</strong>
         </div>
+
+        <style>
+            label > input
+            {
+                border-color: red;
+            }
+        </style>
         {% endif %}
         {% if info %}
         <div class="center label success">
     
-            <strong>{{ info }}</strong>
+            <strong>Inscrit ! Ton pseudo est darbouxtom{{ info }}</strong>
         </div>
         {% endif %}
-</div>
-<div class="container flex flex-800">
-    <form method="POST" action="/login/" class="white-container">
-        {% csrf_token %}
-        <h2 class="center">Login AirEISTI</h2>
-        <fieldset class="flex one">
-            <label>Utilisateur:{{ form.username }}</label>
-        </fieldset>
-        <fieldset class="flex one">
-            <label>Mot de passe:{{ form.password }}</label>
-        </fieldset>
-        <div class="center">
-            <input type="submit" class="success" value="Se connecter" class="center"/>
-            <a href="/inscription/" type="submit" class="error" class="center">Je n'ai pas de compte</a>
-            <!-- <a href="/reservation" class="button" class="center">Se connecter</a> -->
-        </div>
-    </form>
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+                <label class="modern-input username">UTILISATEUR:{{ form.username }}</label>
+                <label class="modern-input password">MOT DE PASSE:{{ form.password }}</label>
+                <input type="submit" class="success" value="Se connecter" class="center"/>
+
+        </form>
+        <h3>Nouveau chez AirEISTI ?</h3>
+        <a href="/inscription" class="button">S'inscrire</a>
+    </section>
 </div>
 <style>
+    section
+    {
+    }
+     
+    h3
+    {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    h2
+    {
+        font-size: 2em;
+        font-weight: 300;
+        color: cornflowerblue;
+    }
+
+    .button
+    {
+        
+    }
+
     main
     {
         background-image: url("/static/peytalaneApp/img/lan3-flou.jpg");

@@ -11,8 +11,8 @@ main
 }
 
 /***** Button ****/
-/** There is html before to bypass the framework **/
-html button, html input[type="button"],html input[type="reset"],html input[type="submit"],html .button
+/** There is main before to not affect the navbar **/
+main button, main input[type="button"],main input[type="reset"],main input[type="submit"],main .button
 {
     margin-left: 7px;
     margin-right: 7px;
@@ -20,7 +20,7 @@ html button, html input[type="button"],html input[type="reset"],html input[type=
     padding: 0.45em 1em;
 }
 
-html .button.mainButton,html input[type="button"].mainButton,html input[type="submit"].mainbutton
+.button.mainButton, input[type="button"].mainButton, input[type="submit"].mainbutton
 {
     font-size:1.5em;
     background-color: #ed485f;
@@ -70,6 +70,8 @@ html .button.mainButton,html input[type="button"].mainButton,html input[type="su
 }
 
 
+
+
 html input[type="search"]
 {
     border: none;
@@ -93,7 +95,12 @@ body .flex
 
 /*************/
 
-
+h2
+{
+    font-size: 2em;
+    font-weight: 300;
+    color: cornflowerblue;
+}
 h3
 {
     padding: 0;
@@ -128,6 +135,13 @@ li
 .label.error,.label.success
 {
     font-size: 1em;
+    margin: 0;
+}
+
+.label.error
+{
+    background-color: transparent;
+    color:red;
 }
 
 html .orange
@@ -142,7 +156,7 @@ html .blue
 
 html .green
 {
-    background-color: limegreen;
+    background-color: #49e949;
 }
 
 .info
@@ -277,6 +291,52 @@ label
     margin: auto;
     max-width: 300px;
 }
+
+label.modern-input
+{
+    display: block;
+    max-width: 350px;
+    /*color:rgb(180,180,180);*/
+    margin: 20px auto; 
+    position: relative;
+    text-align: left;
+}
+/*
+label.modern-input > input
+{
+    
+    border:none;
+    border-bottom: 1px solid grey;
+    background: none;
+    color:black;
+    border-radius: 0;
+    margin-top: 10px;
+    padding-left: 30px;
+}
+
+label.modern-input::before
+{
+    display: block;
+    content: '';
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    background-size: contain;
+}
+
+label.modern-input.password::before
+{
+    background-image: url("/static/peytalaneApp/helium/unlock.svg");
+}
+
+label.modern-input.username::before
+{
+    background-image: url("/static/peytalaneApp/helium/boy.svg");
+}*/
+
+
 
 .icone
 {
