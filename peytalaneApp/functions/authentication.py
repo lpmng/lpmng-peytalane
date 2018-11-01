@@ -22,7 +22,7 @@ class CoreBackend(object):
             - ` django.contrib.auth.auhentificate `
         """
         core = CoreRequest()
-        user = core.login_User(username,password)
+        user = core.login_user(username,password)
 
         if user is not None:
             request.session['token'] = user['token']
