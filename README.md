@@ -48,6 +48,9 @@ to be connected with API (Arel and lpmng-core), you have to create two files:
         "app":"appName"
     }
 ```  
+<span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
+
+you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
 
 to use stripe to pay you need a file keyStripe.json
 
@@ -58,9 +61,13 @@ to use stripe to pay you need a file keyStripe.json
     }
 ```  
 
-<span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
+Create admin account
+--------------------
 
-you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
+```
+    $ python manage.py createsuperuser --username <user_in_the_core>
+```
+Then type the password of this user.
 
 Launch server
 -------------
