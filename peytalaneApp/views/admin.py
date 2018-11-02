@@ -4,6 +4,7 @@ from django.middleware.csrf import CsrfViewMiddleware
 from django.http import HttpResponse
 from django.db.models import Q
 import csv
+import hashlib
 
 from peytalaneApp.functions.transaction import Transaction
 from peytalaneApp.models_dir.food import Food
@@ -34,26 +35,46 @@ class Food_csv(View):
         first_line = ["Nombre"] + list_options + ["Nom","Commentaire"]
         writer.writerow(first_line)
 
+        list_food_line = []
         for food in list_food:
-            print("plouf")
             line = []
             line.append(1)
+            line.append(food.product)
             for option in list_options:
                 try:
                     line.append(Payment_option_value.objects.get(option=option,payment=food).value)
                 except Payment_option_value.DoesNotExist:
                     line.append("X")
-            line.append(food.product)
             line.append(food.comment.strip())
 
+            list_food_line.append(line)
+
+        list_food_line = self.agregate_food(list_food_line)
+        print(list_food_line)
+        for line in list_food_line:
             writer.writerow(line)
 
-        return response
-            
+        return response       
+
 
 
     def agregate_food(self,list_food):
-        raise NotImplemented
+        print(list_food)
+        dict_food = dict()
+        for food in list_food:
+            str_food = ""
+            for info in food:
+                str_food = str_food + str(info)
+            hash_object = hashlib.md5(str_food.encode('utf-8'))
+            hash_food = hash_object.hexdigest()
+            if hash_food in dict_food:
+                dict_food[hash_food][0] =  dict_food[hash_food][0] + 1
+            else:
+                dict_food[hash_food] = food
+        
+        print(dict_food)
+        return list(dict_food.values())
+
 
 
 
