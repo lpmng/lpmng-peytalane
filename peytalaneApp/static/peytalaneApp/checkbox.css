@@ -45,3 +45,11 @@ input[type=checkbox] {
 .checkboxFour input[type=checkbox]:checked + label {
     background: #00D1B1;
 }
+
+.checkboxFour input[type="checkbox"]:disabled + label {
+    cursor: not-allowed;
+}
+
+.checkboxFour input[type="checkbox"]:checked:disabled + label {
+    background:lightgray;
+}
