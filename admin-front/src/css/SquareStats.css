@@ -1,0 +1,64 @@
+.square-stats
+{
+    width: 260px;
+    height: 210px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+
+.square-stats.orange
+{
+
+    background-image: linear-gradient(162deg, #e36d3f 0%, #ff4e8c 100%);
+}
+
+.square-stats.violet
+{
+
+    background-image: linear-gradient(162deg, #4462d4 0%, #7956e8 100%);
+}
+
+.square-stats.turquoise
+{
+    background-color: #21D4FD;
+    background-image: linear-gradient(162deg, #009ecf 0%, #1ecae6 100%);
+
+}
+
+
+.square-stats .title
+{
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    font-size: 1.5em;
+}
+
+.square-stats .infos .text
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+
+}
+
+.square-stats .infos
+{
+    display: flex;
+    flex:1;
+}
+
+.square-stats .graph
+{
+    flex:1;
+}
+
+.square-stats .main-info
+{
+    font-size: 2em;
+    font-weight: bold;
+}
