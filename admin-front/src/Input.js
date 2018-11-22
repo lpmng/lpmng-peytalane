@@ -21,7 +21,7 @@ class ExtendInput extends Component {
     return (
       <label>
         {this.props.label}
-        <input type={this.props.type} onChange={this.handleChange.bind(this)} name={this.props.name} value={this.state.value}/>
+        <input placeholder={this.props.placeholder || "type text..."} type={this.props.type} onChange={this.handleChange.bind(this)} name={this.props.name} value={this.state.value}/>
       </label>
     );
   }

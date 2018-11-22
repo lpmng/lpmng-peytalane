@@ -1,0 +1,25 @@
+.user-infos
+{
+
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(50,65,150);
+    height: 70px;
+    border-radius: 0px;
+    box-shadow: 1px 1px 15px rgba(50,50,50,0.3);
+}
+
+.user-infos .username
+{
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.random-image > img
+{
+    display: block;
+    width: 90%;
+    margin: auto;
+    border: 2px solid #cfe2ff;
+    box-shadow: 0px 0px 8px #cfe2ff;
+}

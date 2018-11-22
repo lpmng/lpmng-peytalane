@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ExtendInput from './Input';
+import './css/Users.css';
 
 
 
@@ -13,8 +14,10 @@ class UserInfos extends React.Component {
 
     render() {
         return (
-            <div>
-            {this.state.name}
+            <div class="user-infos">
+                <div class="username">
+                    {this.state.name}
+                </div>
             </div>
         )
     }
@@ -47,7 +50,7 @@ class UserTable extends React.Component {
             return (
 
                 <div>
-                <h3>{this.props.title}</h3>
+                <h4>{this.props.title}</h4>
                 {rows}
                 </div>
             );
@@ -85,9 +88,9 @@ class ListUser extends React.Component {
 
     render() {
       return (
-        <div>
+        <div class="column">
           <h3>Users List</h3>
-          <ExtendInput onChange={this.handleFilterTextChange.bind(this)} type="search" label="Search a user" name="searchUsers"/>
+          <ExtendInput onChange={this.handleFilterTextChange.bind(this)} type="search" name="searchUsers" placeholder="search a user"/>
           <UserTable
             users = {this.state.usersCore}
             filter = {this.state.filterText}
@@ -109,7 +112,7 @@ class ListUser extends React.Component {
 class AddUser extends React.Component {
     render() {
       return (
-        <div>
+        <div class="column">
           <h3>Add a new user</h3>
         </div>
       );
@@ -117,15 +120,33 @@ class AddUser extends React.Component {
 }
 
 class Users extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>Users</h2>
-        <AddUser/>
-        <ListUser/>
-      </div>
-    );
-  }
+    constructor(props) {
+      super(props);
+      this.state = {
+        filterText: '',
+        onlyRealUsers: false,
+        usersCore:[
+            {name:"toto",age:18},
+            {name:"titi",age:18},
+        ],
+        usersArel:[
+            {name:"plouf",age:18},
+            {name:"plaf",age:18},
+        ]
+      };
+    }
+    render() {
+        return (
+            <div>
+                <h2>Users</h2>
+                <AddUser/>
+                <ListUser />
+                <div class="random-image column">
+                    <img src="img-test.jpg"/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Users;
