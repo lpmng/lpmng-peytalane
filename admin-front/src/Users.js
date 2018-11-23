@@ -69,14 +69,6 @@ class ListUser extends React.Component {
       this.state = {
         filterText: '',
         onlyRealUsers: false,
-        usersCore:[
-            {name:"toto",age:18},
-            {name:"titi",age:18},
-        ],
-        usersArel:[
-            {name:"plouf",age:18},
-            {name:"plaf",age:18},
-        ]
       };
     }
 
@@ -92,13 +84,13 @@ class ListUser extends React.Component {
           <h3>Users List</h3>
           <ExtendInput onChange={this.handleFilterTextChange.bind(this)} type="search" name="searchUsers" placeholder="search a user"/>
           <UserTable
-            users = {this.state.usersCore}
+            users = {this.props.usersCore}
             filter = {this.state.filterText}
             onlyRealUsers = {this.state.onlyExistingUsers}
             title="Utilisateurs inscrits"
           />
           <UserTable
-            users = {this.state.usersArel}
+            users = {this.props.usersArel}
             filter = {this.state.filterText}
             onlyRealUsers = {this.state.onlyExistingUsers}
             title="Utilisateurs Arel"
@@ -114,6 +106,11 @@ class AddUser extends React.Component {
       return (
         <div class="column">
           <h3>Add a new user</h3>
+          <ExtendInput label="Username:" type="text"/>
+          <ExtendInput label="Nom:" type="text"/>
+          <ExtendInput label="Prenom:" type="text"/>
+          <ExtendInput label="Email:" type="mail"/>
+          <input type="submit" value="add"/>
         </div>
       );
     }
@@ -137,10 +134,10 @@ class Users extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div class="center">
                 <h2>Users</h2>
                 <AddUser/>
-                <ListUser />
+                <ListUser usersArel={this.state.usersArel} usersCore={this.state.usersCore}/>
                 <div class="random-image column">
                     <img src="img-test.jpg"/>
                 </div>

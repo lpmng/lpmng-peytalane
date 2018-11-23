@@ -32,7 +32,6 @@ section
     background-color: #10255c;
     background-image: linear-gradient(344deg, #10255c 0%, #315796 100%);
     box-shadow: inset 1px 1px 8px rgba(255,255,255,0.1);
-    text-align: center;
 
 }
 
@@ -79,4 +78,24 @@ input[type="search"]
 input
 {
     color:
+}
+
+input[type=submit]
+{
+    display: block;
+    margin: 30px 80px;
+    min-width: 200px;
+    height: 40px;
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+    border: navajowhite;
+    color: white;
+    font-weight: 800;
+    border-radius: 5px;
+    border: 1px solid #1566a8;
+}
+
+.center
+{
+    text-align: center;
 }
