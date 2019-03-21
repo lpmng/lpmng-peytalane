@@ -1,12 +1,21 @@
 Peytalane
 =========
 
+Configure API
+-------------
+
+To be connected with API (Arel and Lpmng-core and Stripe), you have to edit 3 files:
+ * config/keyArel.json
+ * config/keyCore.json
+ * config/keyStripe.json
+
 Launch with Docker
 -----------------
 
 ```
 	docker-compose up
 ```
+
 
 
 Use virtualenv (without docker)
@@ -46,10 +55,7 @@ if you want to edit stylesheet:
     $ sudo npm install -g sass
 ```
 
-to be connected with API (Arel and Lpmng-core and Stripe), you have to edit 3 files:
- * config/keyArel.json
- * config/keyCore.json
- * config/keyStripe.json
+
 
 Create admin account
 --------------------
