@@ -9,18 +9,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class CoreRequest():
     "Module pour la gestion des requètes sur LPMNG-Core"
 
-    urlCore = "http://127.0.0.1:8001"
+    #urlCore = "http://127.0.0.1:8001"
 
     def get_token(self,user,pwd):
         """
             Recupère un token de l'api du Core si le user et le mot de passe correspondent
         """
         #on charge les identifiants pour se connecter à l'api du core (il faudrait faire un try catch...)
-        json_data=open(BASE_DIR+'/keyCore.json')
+        json_data=open(BASE_DIR+'/../config/keyCore.json')
         if(json_data):
             data = json.load(json_data)
             key = data['key']
             app = data['app']
+            urlCore = data['url']
             data = {
                         'grant_type':'password',
                         'username':user,
@@ -29,7 +30,7 @@ class CoreRequest():
                         'format':'json'
                     }
             # on envoi la requete et on la recupere en json.
-            http_response = requests.post(self.urlCore+'/o/token/', data = data,auth=(app, key))
+            http_response = requests.post(urlCore+'/o/token/', data = data,auth=(app, key))
             # throw une json.decoder.JSONDecodeError en cas de mauvais identifiants
             http_response_json = http_response.json()
             # si on recoit un token c'est bon
@@ -41,12 +42,16 @@ class CoreRequest():
         """
             Fait une requète pour donner une session à l'utilisateur qui est connecté
         """
+        json_data=open(BASE_DIR+'/../config/keyCore.json')
+        data = json.load(json_data)
+        urlCore = data['url']
+
         token = request.session["token"]
         username = request.user.username
         req = self.requete_core_get("/users/"+username+"/",token)
         req['nbSessions'] = 1
         headers = {'Accept':'application/json','AUTHORIZATION':'Bearer '+token}
-        http_response = requests.patch(self.urlCore+"/users/"+username+"/",headers = headers,data=req)
+        http_response = requests.patch(urlCore+"/users/"+username+"/",headers = headers,data=req)
 
 
 
@@ -58,11 +63,15 @@ class CoreRequest():
             * token : token d'un utilisateur identifié
 
         """
+        json_data=open(BASE_DIR+'/../config/keyCore.json')
+        data = json.load(json_data)
+        urlCore = data['url']
+
         headers = {'Accept':'application/json','AUTHORIZATION':'Bearer '+token}
         data = {
                 'format':'json',
             }
-        http_response = requests.get(self.urlCore+url_api,headers = headers,data=data)
+        http_response = requests.get(urlCore+url_api,headers = headers,data=data)
         if http_response.status_code == 200:
             return http_response.json()
         else:
@@ -74,6 +83,10 @@ class CoreRequest():
 
             Renvoie `True` si celui-ci à été ajouté `False` sinon
         """
+        json_data=open(BASE_DIR+'/../config/keyCore.json')
+        data = json.load(json_data)
+        urlCore = data['url']
+        
         data = {
             'username':username,
             'first_name':firstname,
@@ -82,7 +95,7 @@ class CoreRequest():
             'password':password,
             'tel':'none'
         }
-        req = requests.post(self.urlCore+"/users/", data = data)
+        req = requests.post(urlCore+"/users/", data = data)
         if(req.status_code == 201):
             return True
         else:

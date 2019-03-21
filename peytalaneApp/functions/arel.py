@@ -10,7 +10,7 @@ class Arel():
             recupere un token de l'api d'arel si le user et le mot de passe correspondent
         """
         #on charge les identifiants pour se connecter à l'api d'arel (il faudrait faire un try catch...)
-        json_data=open(BASE_DIR+'/keyArel.json')
+        json_data=open(BASE_DIR+'/../config/keyArel.json')
         if(json_data):
             data = json.load(json_data)
             key = data['key']
