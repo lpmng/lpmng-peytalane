@@ -1,7 +1,15 @@
 Peytalane
 =========
 
-Use virtualenv
+Launch with Docker
+-----------------
+
+```
+	docker-compose up
+```
+
+
+Use virtualenv (without docker)
 --------------
 ```
     $ python3 -m venv env
@@ -9,7 +17,7 @@ Use virtualenv
 ```
 
 
-Installation
+Installation (without docker)
 ------------
 
 ```
@@ -51,7 +59,7 @@ Create admin account
 ```
 Then type the password of this user.
 
-Launch server
+Launch server (without docker)
 -------------
 
 ```batch
