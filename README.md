@@ -38,28 +38,10 @@ if you want to edit stylesheet:
     $ sudo npm install -g sass
 ```
 
-to be connected with API (Arel and lpmng-core), you have to create two files:
- * peytalaneApp/keyArel.json
- * peytalaneApp/keyCore.json
-
-```json
-    {
-        "key":"thekey",
-        "app":"appName"
-    }
-```  
-<span style="color:red"> **Peytalane is dependant of lpmng-core** </span>
-
-you can edit lpmng-core url in ``` peytalaneApp/functions/core.py ```
-
-to use stripe to pay you need a file keyStripe.json
-
-```json
-    {
-        "private":"private_key",
-        "public":"public_key"
-    }
-```  
+to be connected with API (Arel and Lpmng-core and Stripe), you have to edit 3 files:
+ * config/keyArel.json
+ * config/keyCore.json
+ * config/keyStripe.json
 
 Create admin account
 --------------------

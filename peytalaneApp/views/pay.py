@@ -21,7 +21,7 @@ class Pay(View):
 
     @IsLogin
     def get(self, request,lan_is_reserved,have_foods,is_admin,total, *args, **kwargs):
-        json_data=open(BASE_DIR+'/keyStripe.json')
+        json_data=open(BASE_DIR+'/../config/keyStripe.json')
         data = json.load(json_data)
         key = data["public"]
         transactions_list = request.session['transactions']
@@ -32,7 +32,7 @@ class Pay(View):
 
     @IsLogin
     def post(self, request,lan_is_reserved,have_foods,is_admin,total,*args, **kwargs):
-        json_data=open(BASE_DIR+'/keyStripe.json')
+        json_data=open(BASE_DIR+'/../config/keyStripe.json')
         data = json.load(json_data)
         if 'stripeToken' in request.POST:
             transactions_list = request.session['transactions']
